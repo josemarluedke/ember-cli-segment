@@ -1,9 +1,8 @@
 {
   "name": "ember-cli-segment",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -11,11 +10,14 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josemarluedke/ember-cli-segmentio.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Josemar Luedke <josemarluedke@gmail.com> (http://josemarluedke.com/)",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
@@ -40,5 +42,9 @@
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/josemarluedke/ember-cli-segmentio/issues"
+  },
+  "homepage": "https://github.com/josemarluedke/ember-cli-segmentio"
 }
