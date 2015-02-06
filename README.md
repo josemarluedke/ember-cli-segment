@@ -1,4 +1,5 @@
 # Ember CLI segment
+[![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment) [![Code Climate](https://codeclimate.com/github/josemarluedke/ember-cli-segment/badges/gpa.svg)](https://codeclimate.com/github/josemarluedke/ember-cli-segment)
 
 Ember CLI addons that provides a clean and easy way to integrate your Ember application with [Segment.com](https://segment.com/) also known by [Segment.io](http://segment.io/).
 
@@ -70,7 +71,7 @@ export default Ember.Route.extend({
 
 ```
 
-`trackEvent` can receive addinional properties as well:
+`trackEvent` can receive additional properties as well:
 
 ```js
 this.segment.trackEvent('Creates a new post', { title: "Creating a Ember CLI application" });
