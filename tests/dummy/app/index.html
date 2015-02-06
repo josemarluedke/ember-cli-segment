@@ -17,6 +17,14 @@
   <body>
     {{content-for 'body'}}
 
+    <script>
+      window.analytics = {
+        page: function() {},
+        track: function() {},
+        identify: function() {},
+        alias: function() {},
+      };
+    </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/dummy.js"></script>
 
