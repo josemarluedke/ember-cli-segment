@@ -17,9 +17,10 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    segment: {
-      LOG_EVENT_TRACKING: true
-    }
+  };
+
+  ENV['segment'] = {
+    LOG_EVENT_TRACKING: true
   };
 
   if (environment === 'development') {
