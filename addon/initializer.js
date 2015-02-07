@@ -11,12 +11,11 @@ export function initialize(container, application) {
   application.inject('controller', 'segment', 'service:segment');
 
   var router = container.lookup('router:main');
-  var applicationRoute = container.lookup('route:application');
-
   router.on('didTransition', function() {
     this.segment.trackPageView(this.get('url'));
 
-    if(typeof applicationRoute.identifyUser === 'function') {
+    var applicationRoute = container.lookup('route:application');
+    if(applicationRoute && typeof applicationRoute.identifyUser === 'function') {
       applicationRoute.identifyUser();
     }
   });
