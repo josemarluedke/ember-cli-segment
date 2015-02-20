@@ -26,7 +26,7 @@ test('should trigger page and identify when visiting /', function() {
   visit('/');
 
   andThen(function() {
-    ok(window.analytics.page.calledWith('/'));
+    ok(window.analytics.page.called);
     ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
@@ -38,7 +38,7 @@ test('should trigger page and identify when clicking page-1', function() {
   click('.page-1');
 
   andThen(function() {
-    ok(window.analytics.page.calledWith('/page1'));
+    ok(window.analytics.page.called);
     ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
@@ -50,7 +50,7 @@ test('should trigger page and identify when clicking page-2', function() {
   click('.page-2');
 
   andThen(function() {
-    ok(window.analytics.page.calledWith('/page2'));
+    ok(window.analytics.page.called);
     ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
@@ -62,7 +62,7 @@ test('should trigger page and identify when clicking index', function() {
   click('.index');
 
   andThen(function() {
-    ok(window.analytics.page.calledWith('/'));
+    ok(window.analytics.page.called);
     ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });

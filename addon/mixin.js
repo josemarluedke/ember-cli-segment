@@ -19,10 +19,6 @@ export default Ember.Mixin.create({
 
   trackPageView: function(page) {
     if(this.hasAnalytics()) {
-      if(!page) {
-        var loc = window.location;
-        page = loc.hash ? loc.hash.substring(1) : loc.pathname + loc.search;
-      }
       window.analytics.page(page);
 
       this.log('trackPageView', page);
