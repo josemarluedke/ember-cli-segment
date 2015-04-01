@@ -17,11 +17,11 @@ export default Ember.Mixin.create({
     }
   },
 
-  trackPageView: function(page) {
+  trackPageView: function() {
     if(this.hasAnalytics()) {
-      window.analytics.page(page);
+      window.analytics.page.apply(this, arguments);
 
-      this.log('trackPageView', page);
+      this.log('trackPageView', arguments);
     }
   },
 
