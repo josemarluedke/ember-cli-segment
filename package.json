@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-segment",
   "version": "0.0.4",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember CLI addon that provides a clean and easy way to integrate your Ember application with Segment.com also known by Segment.io",
   "directories": {
     "test": "tests"
   },
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/josemarluedke/ember-cli-segmentio.git"
+    "url": "https://github.com/josemarluedke/ember-cli-segment.git"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -44,7 +44,7 @@
     "configPath": "tests/dummy/config"
   },
   "bugs": {
-    "url": "https://github.com/josemarluedke/ember-cli-segmentio/issues"
+    "url": "https://github.com/josemarluedke/ember-cli-segment/issues"
   },
-  "homepage": "https://github.com/josemarluedke/ember-cli-segmentio"
+  "homepage": "https://github.com/josemarluedke/ember-cli-segment"
 }
