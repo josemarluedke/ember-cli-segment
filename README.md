@@ -9,12 +9,15 @@ Ember CLI addons that provides a clean and easy way to integrate your Ember appl
 
 ## Configuration/Logging
 
-There is one option available to configure the events log tracking, the default value is `false`. This option is optional, but recommended.
+Add your Segment `WRITE_KEY` to the `segment` config object for Analytics.js to be loaded and configured automatically.
+
+There is an option available to configure the events log tracking, the default value is `false`. This option is optional, but recommended.
 
 In your `config/environment.js`
 
 ```js
 ENV['segment'] = {
+  WRITE_KEY: 'your_segment_write_key',
   LOG_EVENT_TRACKING: true
 };
 
