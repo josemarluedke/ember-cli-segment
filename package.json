@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-segment",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Ember CLI addon that provides a clean and easy way to integrate your Ember application with Segment.com also known by Segment.io",
   "directories": {
     "test": "tests"
