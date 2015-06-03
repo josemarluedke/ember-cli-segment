@@ -12,7 +12,7 @@ export function initialize(container, application) {
 
   var router = container.lookup('router:main');
   router.on('didTransition', function() {
-    this.segment.trackPageView();
+    container.lookup('service:segment').trackPageView();
 
     var applicationRoute = container.lookup('route:application');
     if(applicationRoute && typeof applicationRoute.identifyUser === 'function') {
