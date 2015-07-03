@@ -39,6 +39,13 @@ export default Ember.Mixin.create({
     }
   },
 
+  group: function(groupId, traits, options, callback) {
+    if(this.hasAnalytics()) {
+      window.analytics.group(groupId, traits, options, callback);
+      this.log('group', traits, options);
+    }
+  },
+
   aliasUser: function(userId, previousId, options, callback) {
     if(this.hasAnalytics()) {
       window.analytics.alias(userId, previousId, options, callback);
