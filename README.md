@@ -105,7 +105,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   identifyUser: function() {
-    if{this.get('currentUser')) {
+    if (this.get('currentUser')) {
       this.segment.identifyUser(this.get('currentUser.id'), this.get('currentUser')));
     }
   }
