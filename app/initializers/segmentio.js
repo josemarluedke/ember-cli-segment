@@ -10,7 +10,7 @@ export default {
   name: 'segment',
   initialize: function(registry, application) {
     initialize(registry, application);
-    if (!checkVersion(Ember.VERSION)) {
+    if(!checkVersion(Ember.VERSION)) {
       instanceInitialize(registry);
     }
   }
