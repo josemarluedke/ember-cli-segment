@@ -1,17 +1,6 @@
-import Ember from 'ember';
-import { initialize, instanceInitialize } from 'ember-cli-segment/initializer';
-
-function checkVersion(version) {
-  var parts = version.split('.');
-  return (parts[0] > 1 || parts[1] > 10);
-}
+import initialize from 'ember-cli-segment/initializer';
 
 export default {
   name: 'segment',
-  initialize: function(registry, application) {
-    initialize(registry, application);
-    if(!checkVersion(Ember.VERSION)) {
-      instanceInitialize(registry);
-    }
-  }
+  initialize: initialize
 };
