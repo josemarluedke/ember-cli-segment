@@ -11,69 +11,68 @@ window.analytics = {
 };
 
 module('Acceptance: Router', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
     sinon.restore(window.analytics);
   }
 });
 
-test('should trigger page and identify when visiting /', function() {
+test('should trigger page and identify when visiting /', function(assert) {
   sinon.spy(window.analytics, 'page');
   sinon.spy(window.analytics, 'identify');
   visit('/');
 
   andThen(function() {
-    ok(window.analytics.page.called);
-    ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
 
-test('should trigger page and identify when clicking page-1', function() {
+test('should trigger page and identify when clicking page-1', function(assert) {
   sinon.spy(window.analytics, 'page');
   sinon.spy(window.analytics, 'identify');
   visit('/');
   click('.page-1');
 
   andThen(function() {
-    ok(window.analytics.page.called);
-    ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
 
-test('should trigger page and identify when clicking page-2', function() {
+test('should trigger page and identify when clicking page-2', function(assert) {
   sinon.spy(window.analytics, 'page');
   sinon.spy(window.analytics, 'identify');
   visit('/');
   click('.page-2');
 
   andThen(function() {
-    ok(window.analytics.page.called);
-    ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
 
-test('should trigger page and identify when clicking index', function() {
+test('should trigger page and identify when clicking index', function(assert) {
   sinon.spy(window.analytics, 'page');
   sinon.spy(window.analytics, 'identify');
   visit('/');
   click('.index');
 
   andThen(function() {
-    ok(window.analytics.page.called);
-    ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
 });
 
-test('should not trigger analytics.identify when visiting /', function() {
+test('should not trigger analytics.identify when visiting /', function(assert) {
   application.__container__.lookup('route:application').set('identifyUser', null);
   sinon.spy(window.analytics, 'identify');
   visit('/');
 
   andThen(function() {
-    ok(!window.analytics.identify.called);
+    assert.ok(!window.analytics.identify.called);
   });
 });
-
