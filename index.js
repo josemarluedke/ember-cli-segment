@@ -5,7 +5,7 @@ module.exports = {
   name: 'ember-cli-segment',
 
   contentFor: function (type, config) {
-    if (type === 'head') {
+    if (type === 'body-footer') {
 
       if (!config.segment || !config.segment.WRITE_KEY) {
         return '';
