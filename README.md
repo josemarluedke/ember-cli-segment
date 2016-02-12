@@ -5,7 +5,7 @@ Ember CLI addons that provides a clean and easy way to integrate your Ember appl
 
 ## Installation
 
-* `ember install:addon ember-cli-segment`
+* `ember install ember-cli-segment`
 
 ## Configuration/Logging
 
