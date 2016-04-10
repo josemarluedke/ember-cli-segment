@@ -9,4 +9,5 @@ export default function initialize() {
   application.inject('route', 'segment', 'service:segment');
   application.inject('router', 'segment', 'service:segment');
   application.inject('controller', 'segment', 'service:segment');
+  application.inject('component', 'segment', 'service:segment');
 }
