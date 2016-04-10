@@ -32,6 +32,7 @@ The addon will add following elements to your CLI project:
 * an initializer that will inject an `segment` object as a wrapper around Segment JS methods on `controllers`, `routes` and `router`.
 * a `didTransition` method on the `router` calling `segment.trackPageView` and `applicationRoute.identifyUser` if it exists.
 * a mixin that you can use where else you need.
+* a service that you can inject in components (or anything): `segment: Ember.inject.service()`
 
 ### Tracking Page Views
 
