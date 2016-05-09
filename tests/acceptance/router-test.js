@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 var application;
-var sinon = window.sinon;
 window.analytics = {
   page: function() {},
   track: function() {},
