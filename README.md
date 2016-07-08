@@ -23,6 +23,14 @@ ENV['segment'] = {
 
 ```
 
+There is a second option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
+
+```js
+ENV['segment'] = {
+  defaultPageTrack: false
+};
+```
+
 **Version 0.1.x is compatible with ember > 1.13.x**
 
 ## Usage
