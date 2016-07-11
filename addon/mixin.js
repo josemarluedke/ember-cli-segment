@@ -11,6 +11,16 @@ export default Ember.Mixin.create({
     return !!(window.analytics && typeof window.analytics === "object");
   },
 
+  // Default true unless user explicitly sets defaultPageTrack to false
+  pageTrackEnabled: function() {
+    return !this.pageTrackDisabled();
+  },
+
+  pageTrackDisabled: function() {
+    const hasSegmentConfig = (this.config && this.config.segment);
+    return (hasSegmentConfig && this.config.segment.defaultPageTrack === false);
+  },
+
   log: function() {
     if(this.config && this.config.segment && this.config.segment.LOG_EVENT_TRACKING) {
       Ember.Logger.info('[Segment.io] ', arguments);
