@@ -21,6 +21,16 @@ export default Ember.Mixin.create({
     return (hasSegmentConfig && this.config.segment.defaultPageTrack === false);
   },
 
+  // Default true unless user explicitly sets defaultIdentifyUser to false
+  identifyUserEnabled: function() {
+    return !this.identifyUserDisabled();
+  },
+
+  identifyUserDisabled: function() {
+    const hasSegmentConfig = (this.config && this.config.segment);
+    return (hasSegmentConfig && this.config.segment.defaultIdentifyUser === false);
+  },
+
   log: function() {
     if(this.config && this.config.segment && this.config.segment.LOG_EVENT_TRACKING) {
       Ember.Logger.info('[Segment.io] ', arguments);

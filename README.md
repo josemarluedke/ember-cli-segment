@@ -23,11 +23,19 @@ ENV['segment'] = {
 
 ```
 
-There is a second option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
+There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
 
 ```js
 ENV['segment'] = {
   defaultPageTrack: false
+};
+```
+
+There is an option available to disable the default identify function on the application.didTransition event. If you do not disable this option then identify events will *by default* be sent to Segment.
+
+```js
+ENV['segment'] = {
+  defaultIdentifyUser: false
 };
 ```
 
