@@ -1,12 +1,17 @@
+/* globals FastBoot */
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
+export default Ember.Service.extend({
   init: function() {
     this._super();
-    if(!this.hasAnalytics()) {
+
+    const isFastBoot = typeof FastBoot !== 'undefined';
+
+    if (!this.hasAnalytics() && this.config !== 'test' && !isFastBoot) {
       Ember.Logger.warn('Segment.io is not loaded yet (window.analytics)');
     }
   },
+
   hasAnalytics: function() {
     return !!(window.analytics && typeof window.analytics === "object");
   },

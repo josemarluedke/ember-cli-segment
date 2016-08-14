@@ -43,38 +43,35 @@ ENV['segment'] = {
 
 ## Usage
 
-The addon will add following elements to your CLI project:
+The addon exposes a service that you can inject in routes, components and more.
 
-* an initializer that will inject an `segment` object as a wrapper around Segment JS methods on `controllers`, `routes` and `router`.
-* a `didTransition` method on the `router` calling `segment.trackPageView` and `applicationRoute.identifyUser` if it exists.
-* a mixin that you can use where else you need.
-* a service that you can inject in components (or anything): `segment: Ember.inject.service()`
+```js
+// app/components/some-awsome-component.js
+import Ember from 'ember';
+
+const { inject: { service } } = Ember;
+
+export default Ember.Component.extend({
+  segment: Ember.inject.service()
+});
+
+```
 
 ### Tracking Page Views
 
 Your router will automatically send a page view event to Segment using the method `page` under `window.analytics` everytime the URL changes.
 
-If you need to call it manually for some reason, you can do it using the following method on `controllers` and `routes`.
+If you need to call it manually for some reason, you can do it using the following method in the service.
 
-```
-this.segment.trackPageView();
+```js
+this.get('segment').trackPageView();
 ```
 
 The method `trackPageView` can receive a parameter that's the page url, if not provided it will fetch from `window.location`.
 
-Additionally you can use the mixin in order to use this method where outside `controllers` and `routes`.
-
-Importing the mixin is really simple:
-
-```js
-import segmentMixin from 'ember-cli-segment/mixin';
-```
-
-The mixin can be applied to any Ember object.
-
 ### Tracking Other Events
 
-You will probabily need to track other events manually as well. We got you covered! Since we have an object called `segment` in your `controllers` and `routes`, it's really straightforward to do it.
+You will probabily need to track other events manually as well. We got you covered! Since we have the service, it's really straightforward to do it.
 
 Let's say that you need to track an event when the user submits an form in your router.
 
@@ -83,10 +80,14 @@ Let's say that you need to track an event when the user submits an form in your 
 // File: app/routes/posts/new.js
 import Ember from 'ember'
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend({
+	segment: service(),
+
   actions: {
     submit: function() {
-      this.segment.trackEvent('Creates a new post');
+      this.get('segment').trackEvent('Creates a new post');
     }
   }
 });
@@ -96,22 +97,26 @@ export default Ember.Route.extend({
 `trackEvent` can receive additional properties as well:
 
 ```js
-this.segment.trackEvent('Creates a new post', { title: "Creating a Ember CLI application" });
+this.get('segment').trackEvent('Creates a new post', { title: "Creating a Ember CLI application" });
 ```
 
 All the parameters you can provide are: `event`, `properties`, `options`, `callback` in this order.
 
 ### Identifying the User
 
-We will automatically call `identifyUser` method from your `application` route everytime the URL changes. Inside this method, you should call `segment.identifyUser` passing the parameters that you want to send to Segment.
+We will automatically call `identifyUser` method from your `application` route everytime the URL changes. Inside this method, you should call `this.get('segment').identifyUser` passing the parameters that you want to send to Segment.
 
 ```js
 // File: app/routes/application.js
 import Ember from 'ember';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend({
+	segment: service(),
+
   identifyUser: function() {
-    this.segment.identifyUser(1, { name: 'Josemar Luedke' });
+    this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
   }
 });
 ```
@@ -122,10 +127,14 @@ You should have in mind that you should make a conditional validation to check i
 ```js
 import Ember from 'ember';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend({
+	segment: service(),
+
   identifyUser: function() {
     if (this.get('currentUser')) {
-      this.segment.identifyUser(this.get('currentUser.id'), this.get('currentUser')));
+      this.get('segment').identifyUser(this.get('currentUser.id'), this.get('currentUser')));
     }
   }
 });
@@ -136,9 +145,14 @@ All the parameters you can provide are: `userId`, `traits`, `options`, `callback
 
 #### aliasUser
 
-Additionally we have an `aliasUser` method avaliable on `segment.aliasUser` that you can use when the user logs in in your application.
+Additionally we have an `aliasUser` method avaliable on `this.get('segment').aliasUser` that you can use when the user logs in in your application.
 
 All the parameters you can provide are: `userId`, `previousId`, `options`, `callback` in this order.
+
+
+### FastBoot
+
+This addon will not break fastBoot, however, it will only execute in the browser. Since we use `window.analytics` to call segment and we don't have it in fastboot land, the addon will not be executed in fastboot.
 
 ## Running Tests
 
