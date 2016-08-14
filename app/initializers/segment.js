@@ -8,7 +8,7 @@ export default function initialize() {
   const segmentConfig = { segment, environment };
 
   application.register('config:segment', segmentConfig, { instantiate: false });
-	application.inject('service:segment', 'config', 'config:segment')
+  application.inject('service:segment', 'config', 'config:segment')
 }
 
 export default {
