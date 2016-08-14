@@ -14,9 +14,6 @@
     "type": "git",
     "url": "https://github.com/josemarluedke/ember-cli-segment.git"
   },
-  "engines": {
-    "node": ">= 0.10.0"
-  },
   "author": "Josemar Luedke <josemarluedke@gmail.com> (http://josemarluedke.com/)",
   "license": "MIT",
   "devDependencies": {
