@@ -64,6 +64,14 @@ export default Ember.Service.extend({
     }
   },
 
+  // reset group, user traits and id's
+  reset: function() {
+    if(this.hasAnalytics()) {
+      window.analytics.reset();
+      this.log("reset");
+    }
+  },
+
   group: function(groupId, traits, options, callback) {
     if(this.hasAnalytics()) {
       window.analytics.group(groupId, traits, options, callback);

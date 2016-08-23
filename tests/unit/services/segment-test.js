@@ -6,6 +6,7 @@ window.analytics = {
   track: function() {},
   identify: function() {},
   alias: function() {},
+  reset: function() {}
 };
 
 moduleFor('service:segment', 'Unit | Service | segment', {
@@ -49,4 +50,12 @@ test('calls analytics.identify on aliasUser', function(assert) {
   sinon.spy(window.analytics, 'alias');
   service.aliasUser('userId', 'previousId', 'options', 'callback');
   assert.ok(window.analytics.alias.calledWith('userId', 'previousId', 'options', 'callback'));
+});
+
+test('calls analytics.reset on reset', function(assert) {
+  let service = this.subject();
+
+  sinon.spy(window.analytics, 'reset');
+  service.reset();
+  assert.ok(window.analytics.reset.calledOnce);
 });
