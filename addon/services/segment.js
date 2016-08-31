@@ -7,7 +7,7 @@ export default Ember.Service.extend({
 
     const isFastBoot = typeof FastBoot !== 'undefined';
 
-    if (!this.hasAnalytics() && this.config.environment !== 'test' && !isFastBoot) {
+    if (!this.hasAnalytics() && (this.config && this.config.environment !== 'test') && !isFastBoot) {
       Ember.Logger.warn('Segment.io is not loaded yet (window.analytics)');
     }
   },
