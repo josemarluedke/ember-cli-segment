@@ -64,6 +64,12 @@ export default Ember.Service.extend({
     }
   },
 
+  loadSegment: function(token) {
+    if (this.hasAnalytics()) {
+      window.analytics.load(token);
+    }
+  },
+
   // reset group, user traits and id's
   reset: function() {
     if(this.hasAnalytics()) {
