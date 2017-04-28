@@ -1,6 +1,6 @@
 import config from '../config/environment';
 
-export default function initialize() {
+export function initialize() {
   const application = arguments[1] || arguments[0];
 
   const { segment = {} } = config;
