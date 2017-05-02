@@ -1,6 +1,5 @@
-import Ember from 'ember';
-import startApp from '../helpers/start-app';
-import { module, test } from 'qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import sinon from 'sinon';
 
 window.analytics = {
@@ -10,13 +9,8 @@ window.analytics = {
   alias: function() {},
 };
 
-var application;
-module('Acceptance: Router', {
-  beforeEach: function() {
-    application = startApp();
-  },
-  afterEach: function() {
-    Ember.run(application, 'destroy');
+moduleForAcceptance('Acceptance: Router', {
+  afterEach() {
     sinon.restore(window.analytics);
   }
 });
