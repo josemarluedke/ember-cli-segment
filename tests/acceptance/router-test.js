@@ -3,7 +3,6 @@ import startApp from '../helpers/start-app';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-var application;
 window.analytics = {
   page: function() {},
   track: function() {},
@@ -11,6 +10,7 @@ window.analytics = {
   alias: function() {},
 };
 
+var application;
 module('Acceptance: Router', {
   beforeEach: function() {
     application = startApp();
@@ -69,9 +69,8 @@ test('should trigger page and identify when clicking index', function(assert) {
 });
 
 test('should not trigger analytics.identify when visiting /', function(assert) {
-  application.__container__.lookup('route:application').set('identifyUser', null);
   sinon.spy(window.analytics, 'identify');
-  visit('/');
+  visit('/?TEST_NO_IDENTIFY=1');
 
   andThen(function() {
     assert.ok(!window.analytics.identify.called);
