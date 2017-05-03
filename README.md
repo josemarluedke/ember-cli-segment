@@ -1,5 +1,7 @@
 # Ember CLI segment
 [![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment) [![Code Climate](https://codeclimate.com/github/josemarluedke/ember-cli-segment/badges/gpa.svg)](https://codeclimate.com/github/josemarluedke/ember-cli-segment)
+![Ember Versions](https://embadge.io/v1/badge.svg?start=1.13.0)
+
 
 Ember CLI addons that provides a clean and easy way to integrate your Ember application with [Segment.com](https://segment.com/).
 
@@ -39,7 +41,7 @@ ENV['segment'] = {
 };
 ```
 
-**Version 0.1.x is compatible with ember > 1.13.x**
+**Version 2.x is compatible with ember > 1.13.x**
 
 ## Usage
 
