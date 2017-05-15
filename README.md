@@ -9,6 +9,8 @@ Ember CLI addons that provides a clean and easy way to integrate your Ember appl
 
 * `ember install ember-cli-segment`
 
+**v2.1+ is compatible with Ember v1.13+**
+
 ## Configuration/Logging
 
 Add your Segment `WRITE_KEY` to the `segment` config object for Analytics.js to be loaded and configured automatically.
@@ -40,8 +42,6 @@ ENV['segment'] = {
   defaultIdentifyUser: false
 };
 ```
-
-**Version 2.x is compatible with ember > 1.13.x**
 
 ## Usage
 
