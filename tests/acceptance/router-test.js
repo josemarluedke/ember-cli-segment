@@ -1,9 +1,7 @@
-import Ember from 'ember';
-import startApp from '../helpers/start-app';
-import { module, test } from 'qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import sinon from 'sinon';
 
-var application;
 window.analytics = {
   page: function() {},
   track: function() {},
@@ -11,19 +9,17 @@ window.analytics = {
   alias: function() {},
 };
 
-module('Acceptance: Router', {
-  beforeEach: function() {
-    application = startApp();
-  },
-  afterEach: function() {
-    Ember.run(application, 'destroy');
-    sinon.restore(window.analytics);
+let sandbox = sinon.sandbox.create();
+
+moduleForAcceptance('Acceptance: Router', {
+  afterEach() {
+    sandbox.restore();
   }
 });
 
 test('should trigger page and identify when visiting /', function(assert) {
-  sinon.spy(window.analytics, 'page');
-  sinon.spy(window.analytics, 'identify');
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
   visit('/');
 
   andThen(function() {
@@ -33,8 +29,8 @@ test('should trigger page and identify when visiting /', function(assert) {
 });
 
 test('should trigger page and identify when clicking page-1', function(assert) {
-  sinon.spy(window.analytics, 'page');
-  sinon.spy(window.analytics, 'identify');
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
   visit('/');
   click('.page-1');
 
@@ -45,8 +41,8 @@ test('should trigger page and identify when clicking page-1', function(assert) {
 });
 
 test('should trigger page and identify when clicking page-2', function(assert) {
-  sinon.spy(window.analytics, 'page');
-  sinon.spy(window.analytics, 'identify');
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
   visit('/');
   click('.page-2');
 
@@ -57,8 +53,8 @@ test('should trigger page and identify when clicking page-2', function(assert) {
 });
 
 test('should trigger page and identify when clicking index', function(assert) {
-  sinon.spy(window.analytics, 'page');
-  sinon.spy(window.analytics, 'identify');
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
   visit('/');
   click('.index');
 
@@ -69,9 +65,8 @@ test('should trigger page and identify when clicking index', function(assert) {
 });
 
 test('should not trigger analytics.identify when visiting /', function(assert) {
-  application.__container__.lookup('route:application').set('identifyUser', null);
-  sinon.spy(window.analytics, 'identify');
-  visit('/');
+  sandbox.spy(window.analytics, 'identify');
+  visit('/?TEST_NO_IDENTIFY=1');
 
   andThen(function() {
     assert.ok(!window.analytics.identify.called);
