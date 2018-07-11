@@ -1,14 +1,15 @@
 /* globals FastBoot */
-import Ember from 'ember';
+import Service from '@ember/service';
+import { warn } from '@ember/debug';
 
-export default Ember.Service.extend({
+export default Service.extend({
   init: function() {
     this._super();
 
     const isFastBoot = typeof FastBoot !== 'undefined';
 
     if (!this.hasAnalytics() && (this.config && this.config.environment !== 'test') && !isFastBoot) {
-      Ember.Logger.warn('Segment.io is not loaded yet (window.analytics)');
+      warn('Segment.io is not loaded yet (window.analytics)');
     }
   },
 
@@ -38,7 +39,7 @@ export default Ember.Service.extend({
 
   log: function() {
     if(this.config && this.config.segment && this.config.segment.LOG_EVENT_TRACKING) {
-      Ember.Logger.info('[Segment.io] ', arguments);
+      console.info('[Segment.io] ', arguments);// eslint-disable-line no-console
     }
   },
 

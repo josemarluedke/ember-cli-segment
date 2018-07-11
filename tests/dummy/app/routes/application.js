@@ -1,11 +1,11 @@
-import Ember from 'ember';
-const { inject: { service } } = Ember;
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 function identifyUser() {
   this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
 }
 
-export default Ember.Route.extend({
+export default Route.extend({
   segment: service(),
   identifyUser: null,
 
