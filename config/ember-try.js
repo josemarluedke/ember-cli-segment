@@ -62,13 +62,13 @@ module.exports = {
       }
     },
     {
-      name: 'ember-lts-2.18.2',
+      name: 'ember-lts-2.18',
       bower: {
         dependencies: {
-          'ember': 'components/ember#2.18.2'
+          'ember': 'components/ember#2.18'
         },
         resolutions: {
-          'ember': '2.18.2'
+          'ember': '2.18'
         }
       },
       npm: {
@@ -126,5 +126,11 @@ module.exports = {
         }
       }
     },
+    {
+      name: 'ember-default',
+      npm: {
+        devDependencies: {}
+      }
+    }
   ]
 };

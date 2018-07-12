@@ -30,11 +30,11 @@ export default Service.extend({
     return !!(window.analytics && typeof window.analytics === "object");
   },
 
-  enabled: function () {
-    return !this.disabled();
+  isEnabled: function () {
+    return !this.isDisabled();
   },
 
-  disabled: function () {
+  isDisabled: function () {
     return this.get('_disabled');
   },
 
@@ -85,7 +85,7 @@ export default Service.extend({
   },
 
   trackPageView: function () {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.page.apply(this, arguments);
       this.set('_calledPageTrack', true);
 
@@ -94,7 +94,7 @@ export default Service.extend({
   },
 
   trackEvent: function (event, properties, options, callback) {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       this.checkPageTrackCalled();
       window.analytics.track(event, properties, options, callback);
 
@@ -103,7 +103,7 @@ export default Service.extend({
   },
 
   identifyUser: function (userId, traits, options, callback) {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.identify(userId, traits, options, callback);
 
       this.log('identifyUser', traits, options);
@@ -112,7 +112,7 @@ export default Service.extend({
 
   // reset group, user traits and id's
   reset: function () {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.reset();
 
       this.log("reset");
@@ -120,7 +120,7 @@ export default Service.extend({
   },
 
   group: function (groupId, traits, options, callback) {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.group(groupId, traits, options, callback);
 
       this.log('group', traits, options);
@@ -128,7 +128,7 @@ export default Service.extend({
   },
 
   aliasUser: function (userId, previousId, options, callback) {
-    if (this.enabled() && this.hasAnalytics()) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.alias(userId, previousId, options, callback);
 
       this.log('aliasUser', userId, previousId, options);
