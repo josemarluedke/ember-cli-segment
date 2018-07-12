@@ -13,7 +13,8 @@ module.exports = {
       '--headless',
       '--disable-gpu',
       '--remote-debugging-port=9222',
-      '--window-size=1440,900'
+      '--window-size=1440,900',
+      '--no-sandbox', //To fix failed travis build, see: https://docs.travis-ci.com/user/chrome#Sandboxing
     ]
   }
 };
