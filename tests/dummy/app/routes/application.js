@@ -15,5 +15,9 @@ export default Route.extend({
     } else {
       this.set('identifyUser', identifyUser);
     }
+
+    if (transition.queryParams.TEST_DISABLE) {
+      this.get('segment').disable();
+    }
   }
 });
