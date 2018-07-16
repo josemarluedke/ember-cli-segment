@@ -5,7 +5,7 @@ export default Route.extend({
   segment: service(),
 
   model() {
-    this.get('segment').disableDefaultPageTrack();
-    this.get('segment').disableDefaultIdentifyUser();
+    this.get('segment').enableDefaultPageTrack();
+    this.get('segment').enableDefaultIdentifyUser();
   }
 });

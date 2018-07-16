@@ -73,26 +73,10 @@ module('Acceptance: Router', function(hooks) {
     assert.ok(!window.analytics.identify.called);
   });
 
-  test('should not trigger page and identify when visiting page3', async function(assert) {
+  test('should not trigger identify, page and track methods when clicking index, page-1 or page-2', async function(assert) {
+    sandbox.spy(window.analytics, 'identify');
     sandbox.spy(window.analytics, 'page');
-    sandbox.spy(window.analytics, 'identify');
-    await visit('/page3');
-
-    assert.ok(!window.analytics.page.called);
-    assert.ok(!window.analytics.identify.called);
-  });
-
-  test('should not trigger page and identify when visiting page4', async function(assert) {
-    sandbox.spy(window.analytics, 'page');
-    sandbox.spy(window.analytics, 'identify');
-    await visit('/page4');
-
-    assert.ok(window.analytics.page.called);
-    assert.ok(window.analytics.identify.called);
-  });
-
-  test('should not trigger analytics identify, page, track methods', async function(assert) {
-    sandbox.spy(window.analytics, 'identify');
+    sandbox.spy(window.analytics, 'track');
     await visit('/?TEST_DISABLE=1');
     await click('.index');
     await click('.page-1');
@@ -101,5 +85,43 @@ module('Acceptance: Router', function(hooks) {
     assert.ok(!window.analytics.page.called);
     assert.ok(!window.analytics.identify.called);
     assert.ok(!window.analytics.track.called);
+  });
+
+  test('should not trigger page and identify but should call track when clicking page-2', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    sandbox.spy(window.analytics, 'track');
+    await visit('/?TEST_DISABLE_DEFAULT_TRACKING=1');
+    await click('.page-2');
+
+    assert.ok(!window.analytics.page.called);
+    assert.ok(!window.analytics.identify.called);
+    assert.ok(window.analytics.track.called);
+  });
+
+  test('should trigger page and identify when clicking page-3', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/?TEST_DISABLE_DEFAULT_TRACKING=1');
+    await click('.page-3');
+
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.called);
+  });
+
+  test('should use trackPageView of application controller for default page tracking', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    await visit('/?TEST_CUSTOM_TRACK_PAGE=1');
+    await click('.page-3');
+
+    assert.ok(window.analytics.page.calledWith('page3'));
+  });
+
+  test('should use trackPageView of segment service for default page tracking', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    await visit('/');
+    await click('.page-3');
+
+    assert.ok(window.analytics.page.neverCalledWith('page3'));
   });
 });
