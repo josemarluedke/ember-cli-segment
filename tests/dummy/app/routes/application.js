@@ -5,7 +5,7 @@ function identifyUser() {
   this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
 }
 
-function trackPageView () {
+function trackPageView() {
   this.get('segment').trackPageView(this.controller.currentPath);
 }
 

@@ -2,25 +2,25 @@ import Application from '@ember/application';
 import { run } from '@ember/runloop';
 import { initialize } from 'dummy/instance-initializers/segment';
 import { module, test } from 'qunit';
-import destroyApp from '../../helpers/destroy-app';
 
-module('Unit | Instance Initializer | segment', {
-  beforeEach: function() {
+module('Unit | Instance Initializer | segment', function(hooks) {
+  hooks.beforeEach(function() {
     run(() => {
       this.application = Application.create();
       this.appInstance = this.application.buildInstance();
     });
-  },
-  afterEach: function() {
+  });
+
+  hooks.afterEach(function() {
     run(this.appInstance, 'destroy');
-    destroyApp(this.application);
-  }
-});
+    run(this.application, 'destroy');
+  });
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  initialize(this.appInstance);
+  // Replace this with your real tests.
+  test('it works', function(assert) {
+    initialize(this.appInstance);
 
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
+    // you would normally confirm the results of the initializer here
+    assert.ok(true);
+  });
 });
