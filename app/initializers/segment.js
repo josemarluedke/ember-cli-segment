@@ -13,5 +13,5 @@ export function initialize() {
 
 export default {
   name: 'segment',
-  initialize: initialize,
+  initialize: initialize
 };
