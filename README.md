@@ -36,7 +36,7 @@ ENV['segment'] = {
 ```
 
 When disabled, you can call tracking methods of `segment` service but they will not call methods of
-`analytics.js`. In this way you can disable segment for development builds, for example. It can be 
+`analytics.js`. In this way you can disable segment for development builds, for example. It can be
 enabled later by calling `enable()` method of `segment` service. Segment's script still will be loaded
 on startup.
 
@@ -186,7 +186,7 @@ All the parameters you can provide are: `userId`, `previousId`, `options`, `call
 
 You can disable/enable segment completely by calling `disable()`/`enable()`. In this case any calls to
 tracking methods (like tracking events, page views, identifying users) will be ignored. These methods
-have the same effect as `enabled` option in configuration. Segment script still will be loaded on 
+have the same effect as `enabled` option in configuration. Segment script still will be loaded on
 startup.
 
 You can disable or enable default page tracking (`disableDefaultPageTrack()`/`enableDefaultPageTrack()`) and
@@ -212,6 +212,6 @@ This addon will not break fastBoot, however, it will only execute in the browser
 
 # License
 
-Copyright (c) 2015 Josemar Luedke
+Copyright (c) 2018 Josemar Luedke
 
 Licensed under the [MIT license](LICENSE.md).
