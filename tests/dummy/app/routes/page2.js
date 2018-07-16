@@ -5,6 +5,6 @@ export default Route.extend({
   segment: service(),
 
   afterModel() {
-    this.get('segment').trackEvent("test event");
+    this.get('segment').trackEvent('test event');
   }
 });

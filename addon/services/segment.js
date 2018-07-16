@@ -20,7 +20,7 @@ export default Service.extend({
       !isFastBoot
     ) {
       warn('Segment is not loaded yet (window.analytics)', false, {
-        id: 'ember-cli-segment.analytics-not-loaded',
+        id: 'ember-cli-segment.analytics-not-loaded'
       });
     }
 
@@ -28,7 +28,7 @@ export default Service.extend({
       const {
         defaultPageTrack,
         defaultIdentifyUser,
-        enabled,
+        enabled
       } = this.config.segment;
       this.set('_defaultPageTrackDisabled', defaultPageTrack === false);
       this.set('_defaultIdentifyUserDisabled', defaultIdentifyUser === false);
@@ -161,8 +161,8 @@ export default Service.extend({
         'https://segment.com/docs/sources/website/analytics.js/#page',
       this.get('_calledPageTrack'),
       {
-        id: 'ember-cli-segment.must-call-page',
+        id: 'ember-cli-segment.must-call-page'
       }
     );
-  },
+  }
 });

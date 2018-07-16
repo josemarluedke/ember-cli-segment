@@ -37,7 +37,14 @@ module('Unit | Service | segment', function(hooks) {
 
     sandbox.spy(window.analytics, 'track');
     service.trackEvent('click', 'properties', 'options', 'callback');
-    assert.ok(window.analytics.track.calledWith('click', 'properties', 'options', 'callback'));
+    assert.ok(
+      window.analytics.track.calledWith(
+        'click',
+        'properties',
+        'options',
+        'callback'
+      )
+    );
   });
 
   test('calls analytics.identify on identifyUser', function(assert) {
@@ -45,7 +52,14 @@ module('Unit | Service | segment', function(hooks) {
 
     sandbox.spy(window.analytics, 'identify');
     service.identifyUser('userId', 'traits', 'options', 'callback');
-    assert.ok(window.analytics.identify.calledWith('userId', 'traits', 'options', 'callback'));
+    assert.ok(
+      window.analytics.identify.calledWith(
+        'userId',
+        'traits',
+        'options',
+        'callback'
+      )
+    );
   });
 
   test('calls analytics.identify on aliasUser', function(assert) {
@@ -53,7 +67,14 @@ module('Unit | Service | segment', function(hooks) {
 
     sandbox.spy(window.analytics, 'alias');
     service.aliasUser('userId', 'previousId', 'options', 'callback');
-    assert.ok(window.analytics.alias.calledWith('userId', 'previousId', 'options', 'callback'));
+    assert.ok(
+      window.analytics.alias.calledWith(
+        'userId',
+        'previousId',
+        'options',
+        'callback'
+      )
+    );
   });
 
   test('calls analytics.reset on reset', function(assert) {
