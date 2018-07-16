@@ -72,3 +72,40 @@ test('should not trigger analytics.identify when visiting /', function(assert) {
     assert.ok(!window.analytics.identify.called);
   });
 });
+
+test('should not trigger page and identify when visiting page3', function (assert) {
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
+  visit('/page3');
+
+  andThen(function () {
+    assert.ok(!window.analytics.page.called);
+    assert.ok(!window.analytics.identify.called);
+  });
+});
+
+test('should not trigger page and identify when visiting page4', function (assert) {
+  sandbox.spy(window.analytics, 'page');
+  sandbox.spy(window.analytics, 'identify');
+  visit('/page4');
+
+  andThen(function () {
+    assert.ok(window.analytics.page.called);
+    assert.ok(window.analytics.identify.called);
+  });
+});
+
+
+test('should not trigger analytics identify, page, track methods', function (assert) {
+  sandbox.spy(window.analytics, 'identify');
+  visit('/?TEST_DISABLE=1');
+  click('.index');
+  click('.page-1');
+  click('.page-2');
+
+  andThen(function () {
+    assert.ok(!window.analytics.page.called);
+    assert.ok(!window.analytics.identify.called);
+    assert.ok(!window.analytics.track.called);
+  });
+});

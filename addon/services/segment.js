@@ -1,88 +1,148 @@
 /* globals FastBoot */
-import Ember from 'ember';
+import Service from '@ember/service';
+import {warn} from '@ember/debug';
 
-export default Ember.Service.extend({
-  init: function() {
+export default Service.extend({
+  _disabled: false,
+  _defaultPageTrackDisabled: false,
+  _defaultIdentifyUserDisabled: false,
+
+  _calledPageTrack: false,
+
+  init: function () {
     this._super();
 
     const isFastBoot = typeof FastBoot !== 'undefined';
 
     if (!this.hasAnalytics() && (this.config && this.config.environment !== 'test') && !isFastBoot) {
-      Ember.Logger.warn('Segment.io is not loaded yet (window.analytics)');
+      warn('Segment.io is not loaded yet (window.analytics)', false, {
+        id: 'ember-cli-segment.analytics-not-loaded'
+      });
     }
+
+    const hasSegmentConfig = (this.config && this.config.segment);
+    this.set('_defaultPageTrackDisabled', hasSegmentConfig && this.config.segment.defaultPageTrack === false);
+    this.set('_defaultIdentifyUserDisabled', hasSegmentConfig && this.config.segment.defaultIdentifyUser === false)
+    this.set('_disabled', hasSegmentConfig && this.config.segment.enabled === false)
   },
 
-  hasAnalytics: function() {
+  hasAnalytics: function () {
     return !!(window.analytics && typeof window.analytics === "object");
   },
 
-  // Default true unless user explicitly sets defaultPageTrack to false
-  pageTrackEnabled: function() {
+  isEnabled: function () {
+    return !this.isDisabled();
+  },
+
+  isDisabled: function () {
+    return this.get('_disabled');
+  },
+
+  enable: function () {
+    this.set('_disabled', false);
+  },
+
+  disable: function () {
+    this.set('_disabled', true);
+  },
+
+  pageTrackEnabled: function () {
     return !this.pageTrackDisabled();
   },
 
-  pageTrackDisabled: function() {
-    const hasSegmentConfig = (this.config && this.config.segment);
-    return (hasSegmentConfig && this.config.segment.defaultPageTrack === false);
+  pageTrackDisabled: function () {
+    return this.get('_defaultPageTrackDisabled');
   },
 
-  // Default true unless user explicitly sets defaultIdentifyUser to false
-  identifyUserEnabled: function() {
+  enableDefaultPageTrack: function () {
+    this.set('_defaultPageTrackDisabled', false);
+  },
+
+  disableDefaultPageTrack: function () {
+    this.set('_defaultPageTrackDisabled', true);
+  },
+
+  identifyUserEnabled: function () {
     return !this.identifyUserDisabled();
   },
 
-  identifyUserDisabled: function() {
-    const hasSegmentConfig = (this.config && this.config.segment);
-    return (hasSegmentConfig && this.config.segment.defaultIdentifyUser === false);
+  identifyUserDisabled: function () {
+    return this.get('_defaultIdentifyUserDisabled');
   },
 
-  log: function() {
-    if(this.config && this.config.segment && this.config.segment.LOG_EVENT_TRACKING) {
-      Ember.Logger.info('[Segment.io] ', arguments);
+  enableDefaultIdentifyUser: function () {
+    this.set('_defaultIdentifyUserDisabled', false);
+  },
+
+  disableDefaultIdentifyUser: function () {
+    this.set('_defaultIdentifyUserDisabled', true);
+  },
+
+  log: function () {
+    if (this.config && this.config.segment && this.config.segment.LOG_EVENT_TRACKING) {
+      console.info('[Segment.io] ', arguments);// eslint-disable-line no-console
     }
   },
 
-  trackPageView: function() {
-    if(this.hasAnalytics()) {
+  trackPageView: function () {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.page.apply(this, arguments);
+      this.set('_calledPageTrack', true);
 
       this.log('trackPageView', arguments);
     }
   },
 
-  trackEvent: function(event, properties, options, callback) {
-    if(this.hasAnalytics()) {
+  trackEvent: function (event, properties, options, callback) {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      this.checkPageTrackCalled();
       window.analytics.track(event, properties, options, callback);
+
       this.log(event, properties, options);
     }
   },
 
-  identifyUser: function(userId, traits, options, callback) {
-    if(this.hasAnalytics()) {
+  identifyUser: function (userId, traits, options, callback) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.identify(userId, traits, options, callback);
+
       this.log('identifyUser', traits, options);
     }
   },
 
   // reset group, user traits and id's
-  reset: function() {
-    if(this.hasAnalytics()) {
+  reset: function () {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.reset();
+
       this.log("reset");
     }
   },
 
-  group: function(groupId, traits, options, callback) {
-    if(this.hasAnalytics()) {
+  group: function (groupId, traits, options, callback) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.group(groupId, traits, options, callback);
+
       this.log('group', traits, options);
     }
   },
 
-  aliasUser: function(userId, previousId, options, callback) {
-    if(this.hasAnalytics()) {
+  aliasUser: function (userId, previousId, options, callback) {
+    if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.alias(userId, previousId, options, callback);
-      this.log('aliasUser', previousId, options);
+
+      this.log('aliasUser', userId, previousId, options);
     }
+  },
+
+  /**
+   * Logs warning into console if trackPageView method wasn't called before tracking event
+   *
+   * @see https://segment.com/docs/sources/website/analytics.js/#page
+   */
+  checkPageTrackCalled: function () {
+    warn('You should call trackPageView at least once: https://segment.com/docs/sources/website/analytics.js/#page', this.get('_calledPageTrack'), {
+      id: 'ember-cli-segment.must-call-page'
+    });
   }
 });

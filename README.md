@@ -27,6 +27,19 @@ ENV['segment'] = {
 
 ```
 
+You can disable segment integration:
+
+```js
+ENV['segment'] = {
+  enabled: false
+};
+```
+
+When disabled, you can call tracking methods of `segment` service but they will not call methods of
+`analytics.js`. In this way you can disable segment for development builds, for example. It can be 
+enabled later by calling `enable()` method of `segment` service. Segment's script still will be loaded
+on startup.
+
 There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
 
 ```js
@@ -63,7 +76,25 @@ export default Ember.Component.extend({
 
 Your router will automatically send a page view event to Segment using the method `page` under `window.analytics` everytime the URL changes.
 
-If you need to call it manually for some reason, you can do it using the following method in the service.
+If you want to include page category and name or modify some properties, you can define `trackPageView` method
+in application controller, like this:
+
+```js
+// File: app/routes/application.js
+import Ember from 'ember';
+
+const { inject: { service } } = Ember;
+
+export default Ember.Route.extend({
+	segment: service(),
+
+  trackPageView: function() {
+    this.get('segment').trackPageView(this.controller.currentPath);
+  }
+});
+```
+
+If you need to call page tracking manually for some reason, you can do it using the following method in the service.
 
 ```js
 this.get('segment').trackPageView();
@@ -136,7 +167,7 @@ export default Ember.Route.extend({
 
   identifyUser: function() {
     if (this.get('currentUser')) {
-      this.get('segment').identifyUser(this.get('currentUser.id'), this.get('currentUser')));
+      this.get('segment').identifyUser(this.get('currentUser.id'), this.get('currentUser'));
     }
   }
 });
@@ -151,6 +182,15 @@ Additionally we have an `aliasUser` method avaliable on `this.get('segment').ali
 
 All the parameters you can provide are: `userId`, `previousId`, `options`, `callback` in this order.
 
+#### Disabling and enabling in runtime
+
+You can disable/enable segment completely by calling `disable()`/`enable()`. In this case any calls to
+tracking methods (like tracking events, page views, identifying users) will be ignored. These methods
+have the same effect as `enabled` option in configuration. Segment script still will be loaded on 
+startup.
+
+You can disable or enable default page tracking (`disableDefaultPageTrack()`/`enableDefaultPageTrack()`) and
+default identify calls (`disableDefaultIdentifyUser()`/`enableDefaultIdentifyUser()`)
 
 ### FastBoot
 
