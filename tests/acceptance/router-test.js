@@ -1,5 +1,6 @@
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { click, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import sinon from 'sinon';
 
 window.analytics = {
@@ -11,99 +12,85 @@ window.analytics = {
 
 let sandbox = sinon.sandbox.create();
 
-moduleForAcceptance('Acceptance: Router', {
-  afterEach() {
+module('Acceptance: Router', function(hooks) {
+  setupApplicationTest(hooks);
+
+  hooks.afterEach(function() {
     sandbox.restore();
-  }
-});
+  });
 
-test('should trigger page and identify when visiting /', function(assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/');
+  test('should trigger page and identify when visiting /', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/');
 
-  andThen(function() {
     assert.ok(window.analytics.page.called);
     assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
-});
 
-test('should trigger page and identify when clicking page-1', function(assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/');
-  click('.page-1');
+  test('should trigger page and identify when clicking page-1', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/');
+    await click('.page-1');
 
-  andThen(function() {
     assert.ok(window.analytics.page.called);
     assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
-});
 
-test('should trigger page and identify when clicking page-2', function(assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/');
-  click('.page-2');
+  test('should trigger page and identify when clicking page-2', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/');
+    await click('.page-2');
 
-  andThen(function() {
     assert.ok(window.analytics.page.called);
     assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
-});
 
-test('should trigger page and identify when clicking index', function(assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/');
-  click('.index');
+  test('should trigger page and identify when clicking index', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/');
+    await click('.index');
 
-  andThen(function() {
     assert.ok(window.analytics.page.called);
     assert.ok(window.analytics.identify.calledWith(1, { name: 'Josemar Luedke' }));
   });
-});
 
-test('should not trigger analytics.identify when visiting /', function(assert) {
-  sandbox.spy(window.analytics, 'identify');
-  visit('/?TEST_NO_IDENTIFY=1');
+  test('should not trigger analytics.identify when visiting /', async function(assert) {
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/?TEST_NO_IDENTIFY=1');
 
-  andThen(function() {
     assert.ok(!window.analytics.identify.called);
   });
-});
 
-test('should not trigger page and identify when visiting page3', function (assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/page3');
+  test('should not trigger page and identify when visiting page3', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/page3');
 
-  andThen(function () {
     assert.ok(!window.analytics.page.called);
     assert.ok(!window.analytics.identify.called);
   });
-});
 
-test('should not trigger page and identify when visiting page4', function (assert) {
-  sandbox.spy(window.analytics, 'page');
-  sandbox.spy(window.analytics, 'identify');
-  visit('/page4');
+  test('should not trigger page and identify when visiting page4', async function(assert) {
+    sandbox.spy(window.analytics, 'page');
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/page4');
 
-  andThen(function () {
     assert.ok(window.analytics.page.called);
     assert.ok(window.analytics.identify.called);
   });
-});
 
 
-test('should not trigger analytics identify, page, track methods', function (assert) {
-  sandbox.spy(window.analytics, 'identify');
-  visit('/?TEST_DISABLE=1');
-  click('.index');
-  click('.page-1');
-  click('.page-2');
+  test('should not trigger analytics identify, page, track methods', async function(assert) {
+    sandbox.spy(window.analytics, 'identify');
+    await visit('/?TEST_DISABLE=1');
+    await click('.index');
+    await click('.page-1');
+    await click('.page-2');
 
-  andThen(function () {
     assert.ok(!window.analytics.page.called);
     assert.ok(!window.analytics.identify.called);
     assert.ok(!window.analytics.track.called);

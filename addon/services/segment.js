@@ -1,6 +1,6 @@
 /* globals FastBoot */
 import Service from '@ember/service';
-import {warn} from '@ember/debug';
+import { warn } from '@ember/debug';
 
 export default Service.extend({
   _disabled: false,
