@@ -10,7 +10,7 @@ export default Service.extend({
   _calledPageTrack: false,
 
   init() {
-    this._super();
+    this._super(...arguments);
 
     const isFastBoot = typeof FastBoot !== 'undefined';
 
