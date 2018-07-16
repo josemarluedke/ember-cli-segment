@@ -19,24 +19,21 @@ export default Service.extend({
       (this.config && this.config.environment !== 'test') &&
       !isFastBoot
     ) {
-      warn('Segment.io is not loaded yet (window.analytics)', false, {
+      warn('Segment is not loaded yet (window.analytics)', false, {
         id: 'ember-cli-segment.analytics-not-loaded',
       });
     }
 
-    const hasSegmentConfig = this.config && this.config.segment;
-    this.set(
-      '_defaultPageTrackDisabled',
-      hasSegmentConfig && this.config.segment.defaultPageTrack === false
-    );
-    this.set(
-      '_defaultIdentifyUserDisabled',
-      hasSegmentConfig && this.config.segment.defaultIdentifyUser === false
-    );
-    this.set(
-      '_disabled',
-      hasSegmentConfig && this.config.segment.enabled === false
-    );
+    if (this.config && this.config.segment) {
+      const {
+        defaultPageTrack,
+        defaultIdentifyUser,
+        enabled,
+      } = this.config.segment;
+      this.set('_defaultPageTrackDisabled', defaultPageTrack === false);
+      this.set('_defaultIdentifyUserDisabled', defaultIdentifyUser === false);
+      this.set('_disabled', enabled === false);
+    }
   },
 
   hasAnalytics() {
@@ -159,7 +156,9 @@ export default Service.extend({
    */
   checkPageTrackCalled() {
     warn(
-      'You should call trackPageView at least once: https://segment.com/docs/sources/website/analytics.js/#page',
+      '[ember-cli-segment] You should call trackPageView at least once ' +
+        'before tracking events: ' +
+        'https://segment.com/docs/sources/website/analytics.js/#page',
       this.get('_calledPageTrack'),
       {
         id: 'ember-cli-segment.must-call-page',

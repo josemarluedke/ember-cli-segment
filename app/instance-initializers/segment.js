@@ -5,27 +5,29 @@ export function initialize(appInstance) {
   const router = owner.lookup('router:main');
   const segment = owner.lookup('service:segment');
 
-  router.on('didTransition', function () {
+  router.on('didTransition', function() {
     const applicationRoute = owner.lookup('route:application');
 
     if (segment && segment.pageTrackEnabled()) {
       if (typeof applicationRoute.trackPageView === 'function') {
-        applicationRoute.trackPageView()
+        applicationRoute.trackPageView();
       } else {
         segment.trackPageView();
       }
     }
 
     if (segment && segment.identifyUserEnabled()) {
-      if (applicationRoute && typeof applicationRoute.identifyUser === 'function') {
+      if (
+        applicationRoute &&
+        typeof applicationRoute.identifyUser === 'function'
+      ) {
         applicationRoute.identifyUser();
       }
     }
   });
-
 }
 
 export default {
   name: 'segment',
-  initialize
+  initialize,
 };
