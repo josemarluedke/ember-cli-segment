@@ -20,33 +20,6 @@
 - Raido Kuli ([@raido](https://github.com/raido))
 ✨  Done in 1.96s.
 
-17:28:48 in ~/code/oss/ember-cli-segment on  master via ⬢ 10.0.0 via 🐹 3.2.0
-➜ yarn changelog --from  v0.3.0
-yarn run v1.7.0
-$ lerna-changelog --from v0.3.0
-
-## Unreleased (2018-07-17)
-
-#### :zap: New Feature
-* [#41](https://github.com/josemarluedke/ember-cli-segment/pull/41) Enable/disable tracking at runtime ([@GendelfLugansk](https://github.com/GendelfLugansk))
-
-#### :memo: Documentation
-* [#39](https://github.com/josemarluedke/ember-cli-segment/pull/39) fix: Update readme to use destructive assignment ([@dmuneras](https://github.com/dmuneras))
-* [#37](https://github.com/josemarluedke/ember-cli-segment/pull/37) Update readme about version compatibility ([@raido](https://github.com/raido))
-
-#### :house: Internal
-* [#45](https://github.com/josemarluedke/ember-cli-segment/pull/45) Remove bower ([@josemarluedke](https://github.com/josemarluedke))
-* [#44](https://github.com/josemarluedke/ember-cli-segment/pull/44) Updated tests ([@GendelfLugansk](https://github.com/GendelfLugansk))
-* [#43](https://github.com/josemarluedke/ember-cli-segment/pull/43) Setup eslint with prettier  ([@josemarluedke](https://github.com/josemarluedke))
-* [#42](https://github.com/josemarluedke/ember-cli-segment/pull/42)  Upgrade to Ember CLI v3.2  ([@josemarluedke](https://github.com/josemarluedke))
-
-#### Committers: 4
-- Daniel Múnera Sánchez ([@dmuneras](https://github.com/dmuneras))
-- Gennady Dogaev ([@GendelfLugansk](https://github.com/GendelfLugansk))
-- Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
-- Raido Kuli ([@raido](https://github.com/raido))
-
-
 ## v2.1.0 (2017-05-15)
 
 #### :house: Internal
