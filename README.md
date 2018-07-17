@@ -1,5 +1,6 @@
 # Ember CLI segment
-[![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment) [![Code Climate](https://codeclimate.com/github/josemarluedke/ember-cli-segment/badges/gpa.svg)](https://codeclimate.com/github/josemarluedke/ember-cli-segment)
+[![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-cli-segment.svg)](https://emberobserver.com/addons/ember-cli-segment)
 ![Ember Versions](https://embadge.io/v1/badge.svg?start=1.13.0)
 
 
