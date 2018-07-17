@@ -1,7 +1,7 @@
 # Ember CLI segment
 [![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-segment.svg)](https://emberobserver.com/addons/ember-cli-segment)
-![Ember Versions](https://embadge.io/v1/badge.svg?start=1.13.0)
+![Ember Versions](https://embadge.io/v1/badge.svg?start=2.12.0)
 
 
 Ember CLI addons that provides a clean and easy way to integrate your Ember application with [Segment.com](https://segment.com/).
@@ -10,7 +10,7 @@ Ember CLI addons that provides a clean and easy way to integrate your Ember appl
 
 * `ember install ember-cli-segment`
 
-**v2.1+ is compatible with Ember v1.13+**
+**For compatible with Ember v1.13, use version 2.1.0**
 
 ## Configuration/Logging
 
