@@ -8,7 +8,7 @@ export function initialize(appInstance) {
   router.on('didTransition', function() {
     const applicationRoute = owner.lookup('route:application');
 
-    if (segment && segment.pageTrackEnabled()) {
+    if (segment && segment.isPageTrackEnabled()) {
       if (typeof applicationRoute.trackPageView === 'function') {
         applicationRoute.trackPageView();
       } else {
@@ -16,7 +16,7 @@ export function initialize(appInstance) {
       }
     }
 
-    if (segment && segment.identifyUserEnabled()) {
+    if (segment && segment.isIdentifyUserEnabled()) {
       if (
         applicationRoute &&
         typeof applicationRoute.identifyUser === 'function'
