@@ -41,11 +41,7 @@ export default Service.extend({
   },
 
   isEnabled() {
-    return !this.isDisabled();
-  },
-
-  isDisabled() {
-    return this.get('_disabled');
+    return !this.get('_disabled');
   },
 
   enable() {
@@ -56,12 +52,8 @@ export default Service.extend({
     this.set('_disabled', true);
   },
 
-  pageTrackEnabled() {
-    return !this.pageTrackDisabled();
-  },
-
-  pageTrackDisabled() {
-    return this.get('_defaultPageTrackDisabled');
+  isPageTrackEnabled() {
+    return !this.get('_defaultPageTrackDisabled');
   },
 
   enableDefaultPageTrack() {
@@ -72,12 +64,8 @@ export default Service.extend({
     this.set('_defaultPageTrackDisabled', true);
   },
 
-  identifyUserEnabled() {
-    return !this.identifyUserDisabled();
-  },
-
-  identifyUserDisabled() {
-    return this.get('_defaultIdentifyUserDisabled');
+  isIdentifyUserEnabled() {
+    return !this.get('_defaultIdentifyUserDisabled');
   },
 
   enableDefaultIdentifyUser() {
