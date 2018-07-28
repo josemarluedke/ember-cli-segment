@@ -48,7 +48,7 @@ ENV.segment = {
 When disabled, you can call tracking methods of `segment` service but they will not call methods of
 `analytics.js`. In this way you can disable segment for development builds, for example. It can be
 enabled later by calling `enable()` method of `segment` service. Segment's script still will be loaded
-on startup.
+on startup. More about the `enable()` method below.
 
 
 There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
@@ -188,7 +188,7 @@ Additionally we have an `aliasUser` method avaliable on `this.get('segment').ali
 
 All the parameters you can provide are: `userId`, `previousId`, `options`, `callback` in this order.
 
-#### Disabling and enabling in runtime
+### Disabling and enabling at runtime
 
 You can disable/enable segment completely by calling `disable()`/`enable()`. In this case any calls to
 tracking methods (like tracking events, page views, identifying users) will be ignored. These methods
