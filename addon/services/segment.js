@@ -82,7 +82,7 @@ export default Service.extend({
       this.config.segment &&
       this.config.segment.LOG_EVENT_TRACKING
     ) {
-      console.info('[Segment.io] ', arguments); // eslint-disable-line no-console
+      console.info('[Segment] ', arguments); // eslint-disable-line no-console
     }
   },
 
