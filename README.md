@@ -95,7 +95,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-	segment: service(),
+  segment: service(),
 
   trackPageView: function() {
     this.get('segment').trackPageView(this.controller.currentPath);
@@ -124,7 +124,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-	segment: service(),
+  segment: service(),
 
   actions: {
     submit: function() {
@@ -153,7 +153,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-	segment: service(),
+  segment: service(),
 
   identifyUser: function() {
     this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
@@ -169,7 +169,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-	segment: service(),
+  segment: service(),
 
   identifyUser: function() {
     if (this.get('currentUser')) {
