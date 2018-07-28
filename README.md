@@ -1,9 +1,8 @@
-# Ember CLI segment
+# Ember CLI Segment
 [![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-segment.svg)](https://emberobserver.com/addons/ember-cli-segment)
 
-
-Ember CLI addons that provides a clean and easy way to integrate your Ember application with [Segment.com](https://segment.com/).
+Ember CLI Segment provides an easy way to integrate your Ember application with [Segment.com](https://segment.com/).
 
 ## Installation
 
@@ -11,26 +10,37 @@ Ember CLI addons that provides a clean and easy way to integrate your Ember appl
 
 **For compatible with Ember v1.13, use version 2.1.0**
 
-## Configuration/Logging
+## Configuration
 
-Add your Segment `WRITE_KEY` to the `segment` config object for Analytics.js to be loaded and configured automatically.
+Conficuration options can be placed in your `config/environment.js` under the `segment` key.
 
-There is an option available to configure the events log tracking, the default value is `false`. This option is optional, but recommended.
+### Segment key
 
-In your `config/environment.js`
+You must provide your segment write key in order to correctly send events to segment.
 
 ```js
-ENV['segment'] = {
-  WRITE_KEY: 'your_segment_write_key',
-  LOG_EVENT_TRACKING: true
+ENV.segment = {
+  WRITE_KEY: 'your_segment_write_key'
 };
 
 ```
 
-You can disable segment integration:
+### Logging
+
+To get logs when events are fired to segment, you must enable it. Default value is `false`. 
 
 ```js
-ENV['segment'] = {
+ENV.segment = {
+  LOG_EVENT_TRACKING: true
+};
+```
+
+### Disable Segment Integration
+
+You can disable segment integration with `enabled` option, however, segment scripts will still be inserted in your page. Default value is `true`.
+
+```js
+ENV.segment = {
   enabled: false
 };
 ```
@@ -40,10 +50,11 @@ When disabled, you can call tracking methods of `segment` service but they will 
 enabled later by calling `enable()` method of `segment` service. Segment's script still will be loaded
 on startup.
 
+
 There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
 
 ```js
-ENV['segment'] = {
+ENV.segment = {
   defaultPageTrack: false
 };
 ```
@@ -51,7 +62,7 @@ ENV['segment'] = {
 There is an option available to disable the default identify function on the application.didTransition event. If you do not disable this option then identify events will *by default* be sent to Segment.
 
 ```js
-ENV['segment'] = {
+ENV.segment = {
   defaultIdentifyUser: false
 };
 ```
@@ -61,12 +72,11 @@ ENV['segment'] = {
 The addon exposes a service that you can inject in routes, components and more.
 
 ```js
-// app/components/some-awsome-component.js
-import Ember from 'ember';
+// app/components/some-awesome-component.js
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   segment: service()
 });
 
@@ -81,11 +91,10 @@ in application controller, like this:
 
 ```js
 // File: app/routes/application.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
 	segment: service(),
 
   trackPageView: function() {
@@ -111,11 +120,10 @@ Let's say that you need to track an event when the user submits an form in your 
 
 ```js
 // File: app/routes/posts/new.js
-import Ember from 'ember'
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
 	segment: service(),
 
   actions: {
@@ -141,11 +149,10 @@ We will automatically call `identifyUser` method from your `application` route e
 
 ```js
 // File: app/routes/application.js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
 	segment: service(),
 
   identifyUser: function() {
@@ -158,11 +165,10 @@ You should have in mind that you should make a conditional validation to check i
 
 
 ```js
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
 	segment: service(),
 
   identifyUser: function() {
