@@ -1,13 +1,19 @@
-## Unreleased (2018-07-17)
+## v3.0.0-beta.1 (2018-07-27)
 
 #### :zap: New Feature
 * [#41](https://github.com/josemarluedke/ember-cli-segment/pull/41) Enable/disable tracking at runtime ([@GendelfLugansk](https://github.com/GendelfLugansk))
 
+#### :rocket: Enhancement
+* [#49](https://github.com/josemarluedke/ember-cli-segment/pull/49) Remove unnecessary methods that check if disabled from service ([@josemarluedke](https://github.com/josemarluedke))
+
 #### :memo: Documentation
+* [#46](https://github.com/josemarluedke/ember-cli-segment/pull/46) Add changelog generator using lerna-changelog ([@josemarluedke](https://github.com/josemarluedke))
 * [#39](https://github.com/josemarluedke/ember-cli-segment/pull/39) fix: Update readme to use destructive assignment ([@dmuneras](https://github.com/dmuneras))
 * [#37](https://github.com/josemarluedke/ember-cli-segment/pull/37) Update readme about version compatibility ([@raido](https://github.com/raido))
 
 #### :house: Internal
+* [#50](https://github.com/josemarluedke/ember-cli-segment/pull/50) Upgrade project dependencies ([@josemarluedke](https://github.com/josemarluedke))
+* [#47](https://github.com/josemarluedke/ember-cli-segment/pull/47) Update project dependencies ([@josemarluedke](https://github.com/josemarluedke))
 * [#45](https://github.com/josemarluedke/ember-cli-segment/pull/45) Remove bower ([@josemarluedke](https://github.com/josemarluedke))
 * [#44](https://github.com/josemarluedke/ember-cli-segment/pull/44) Updated tests ([@GendelfLugansk](https://github.com/GendelfLugansk))
 * [#43](https://github.com/josemarluedke/ember-cli-segment/pull/43) Setup eslint with prettier  ([@josemarluedke](https://github.com/josemarluedke))
@@ -18,7 +24,6 @@
 - Gennady Dogaev ([@GendelfLugansk](https://github.com/GendelfLugansk))
 - Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
 - Raido Kuli ([@raido](https://github.com/raido))
-✨  Done in 1.96s.
 
 ## v2.1.0 (2017-05-15)
 
