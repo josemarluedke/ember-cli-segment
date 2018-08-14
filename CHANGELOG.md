@@ -1,3 +1,12 @@
+## v3.0.0 (2018-08-14)
+
+#### :zap: New Feature
+* [#51](https://github.com/josemarluedke/ember-cli-segment/pull/51) Add support for Segment groups ([@mattpauldavies](https://github.com/mattpauldavies))
+
+#### Committers: 1
+- Matt Davies ([@mattpauldavies](https://github.com/mattpauldavies))
+
+
 ## v3.0.0-beta.1 (2018-07-27)
 
 #### :zap: New Feature
