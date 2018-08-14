@@ -6,6 +6,7 @@ window.analytics = {
   page: function() {},
   track: function() {},
   identify: function() {},
+  group: function() {},
   alias: function() {},
   reset: function() {}
 };
@@ -55,6 +56,21 @@ module('Unit | Service | segment', function(hooks) {
     assert.ok(
       window.analytics.identify.calledWith(
         'userId',
+        'traits',
+        'options',
+        'callback'
+      )
+    );
+  });
+
+  test('calls analytics.group on identifyGroup', function(assert) {
+    let service = this.owner.lookup('service:segment');
+
+    sandbox.spy(window.analytics, 'group');
+    service.identifyGroup('groupId', 'traits', 'options', 'callback');
+    assert.ok(
+      window.analytics.group.calledWith(
+        'groupId',
         'traits',
         'options',
         'callback'
