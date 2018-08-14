@@ -112,6 +112,14 @@ export default Service.extend({
     }
   },
 
+  identifyGroup(groupId, traits, options, callback) {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      window.analytics.group(groupId, traits, options, callback);
+
+      this.log('identifyGroup', traits, options);
+    }
+  },
+
   // reset group, user traits and id's
   reset() {
     if (this.isEnabled() && this.hasAnalytics()) {
