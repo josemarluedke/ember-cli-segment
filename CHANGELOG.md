@@ -1,3 +1,17 @@
+## v3.1.0 (2019-01-23)
+
+#### :rocket: Enhancement
+* [#55](https://github.com/josemarluedke/ember-cli-segment/pull/55) Remove some unused packages and get latest of each package ([@josemarluedke](https://github.com/josemarluedke))
+* [#54](https://github.com/josemarluedke/ember-cli-segment/pull/54) Upgrade to Ember v3.7.x ([@raido](https://github.com/raido))
+
+#### :house: Internal
+* [#55](https://github.com/josemarluedke/ember-cli-segment/pull/55) Remove some unused packages and get latest of each package ([@josemarluedke](https://github.com/josemarluedke))
+* [#54](https://github.com/josemarluedke/ember-cli-segment/pull/54) Upgrade to Ember v3.7.x ([@raido](https://github.com/raido))
+
+#### Committers: 2
+- Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
+- Raido Kuli ([@raido](https://github.com/raido))
+
 ## v3.0.1 (2019-01-23)
 
 #### :rocket: Enhancement
