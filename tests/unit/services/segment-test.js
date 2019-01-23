@@ -11,7 +11,7 @@ window.analytics = {
   reset: function() {}
 };
 
-let sandbox = sinon.sandbox.create();
+let sandbox = sinon.createSandbox();
 
 module('Unit | Service | segment', function(hooks) {
   setupTest(hooks);
