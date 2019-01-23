@@ -8,7 +8,7 @@ Ember CLI Segment provides an easy way to integrate your Ember application with 
 
 * `ember install ember-cli-segment`
 
-**For compatible with Ember v1.13, use version 2.1.0**
+**For compatibility with Ember v1.13, use version 2.1.0**
 
 ## Configuration
 
