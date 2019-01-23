@@ -10,7 +10,7 @@ window.analytics = {
   alias: function() {}
 };
 
-let sandbox = sinon.sandbox.create();
+let sandbox = sinon.createSandbox();
 
 module('Acceptance: Router', function(hooks) {
   setupApplicationTest(hooks);

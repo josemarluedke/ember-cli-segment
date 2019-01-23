@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-segment',
+  name: require('./package').name,
 
   contentFor: function(type, config) {
     if (type === 'body-footer') {
