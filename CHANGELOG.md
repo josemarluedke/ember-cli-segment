@@ -1,3 +1,11 @@
+## v3.0.1 (2019-01-23)
+
+#### :rocket: Enhancement
+* [#53](https://github.com/josemarluedke/ember-cli-segment/pull/53) Fix didTransition deprecation on Ember 3.6+ ([@raido](https://github.com/raido))
+
+#### Committers: 1
+- Raido Kuli ([@raido](https://github.com/raido))
+
 ## v3.0.0 (2018-08-14)
 
 #### :zap: New Feature
