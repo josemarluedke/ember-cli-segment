@@ -1,7 +1,10 @@
-## Unreleased (2019-04-23)
+## v3.2.0 (2019-04-23)
 
 #### :zap: New Feature
 * [#56](https://github.com/josemarluedke/ember-cli-segment/pull/56) Add csp nonce option to the config ([@josemarluedke](https://github.com/josemarluedke))
+
+#### :house: Internal
+* [#57](https://github.com/josemarluedke/ember-cli-segment/pull/57)  Upgrade to Ember v3.9 ([@josemarluedke](https://github.com/josemarluedke))
 
 #### Committers: 1
 - Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
