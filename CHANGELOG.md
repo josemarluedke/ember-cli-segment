@@ -1,3 +1,11 @@
+## Unreleased (2019-04-23)
+
+#### :zap: New Feature
+* [#56](https://github.com/josemarluedke/ember-cli-segment/pull/56) Add csp nonce option to the config ([@josemarluedke](https://github.com/josemarluedke))
+
+#### Committers: 1
+- Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
+
 ## v3.1.0 (2019-01-23)
 
 #### :rocket: Enhancement
