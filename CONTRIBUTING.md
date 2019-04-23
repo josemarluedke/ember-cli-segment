@@ -2,7 +2,7 @@
 
 ## Installation
 
-* `git clone <repository-url>`
+* `git clone git@github.com:josemarluedke/ember-cli-segment.git`
 * `cd ember-cli-segment`
 * `yarn install`
 
