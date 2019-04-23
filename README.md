@@ -27,7 +27,7 @@ ENV.segment = {
 
 ### Logging
 
-To get logs when events are fired to segment, you must enable it. Default value is `false`. 
+To get logs when events are fired to segment, you must enable it. Default value is `false`.
 
 ```js
 ENV.segment = {
@@ -207,17 +207,14 @@ This addon will not break fastBoot, however, it will only execute in the browser
 * `ember test`
 * `ember test --server`
 
-## Contributing
 
-1. [Fork it](https://github.com/josemarluedke/ember-cli-segment/fork)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 
-# License
-
-Copyright (c) 2018 Josemar Luedke
+License
+------------------------------------------------------------------------------
 
 Licensed under the [MIT license](LICENSE.md).
