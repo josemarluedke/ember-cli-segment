@@ -25,6 +25,8 @@
 /yarn.lock
 .gitkeep
 .changelog/
+.git/
+.prettierrc.js
 
 # ember-try
 /.node_modules.ember-try/
