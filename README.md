@@ -1,4 +1,5 @@
 # Ember CLI Segment
+
 [![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-segment.svg)](https://emberobserver.com/addons/ember-cli-segment)
 
@@ -6,7 +7,7 @@ Ember CLI Segment provides an easy way to integrate your Ember application with 
 
 ## Installation
 
-* `ember install ember-cli-segment`
+- `ember install ember-cli-segment`
 
 **For compatibility with Ember v1.13, use version 2.1.0**
 
@@ -22,7 +23,14 @@ You must provide your segment write key in order to correctly send events to seg
 ENV.segment = {
   WRITE_KEY: 'your_segment_write_key'
 };
+```
 
+### Segment proxy
+
+```js
+ENV.segment = {
+  proxyDomain: 'https://segmentproxy.mydomain.com/'
+};
 ```
 
 ### Logging
@@ -50,8 +58,7 @@ When disabled, you can call tracking methods of `segment` service but they will 
 enabled later by calling `enable()` method of `segment` service. Segment's script still will be loaded
 on startup. More about the `enable()` method below.
 
-
-There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will *by default* be sent to Segment.
+There is an option available to disable the default page tracking on the application.didTransition event. If you do not disable this option then tracking events will _by default_ be sent to Segment.
 
 ```js
 ENV.segment = {
@@ -59,7 +66,7 @@ ENV.segment = {
 };
 ```
 
-There is an option available to disable the default identify function on the application.didTransition event. If you do not disable this option then identify events will *by default* be sent to Segment.
+There is an option available to disable the default identify function on the application.didTransition event. If you do not disable this option then identify events will _by default_ be sent to Segment.
 
 ```js
 ENV.segment = {
@@ -79,7 +86,6 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   segment: service()
 });
-
 ```
 
 ### Tracking Page Views
@@ -117,7 +123,6 @@ You will probabily need to track other events manually as well. We got you cover
 
 Let's say that you need to track an event when the user submits an form in your router.
 
-
 ```js
 // File: app/routes/posts/new.js
 import Route from '@ember/routing/route';
@@ -132,13 +137,14 @@ export default Route.extend({
     }
   }
 });
-
 ```
 
 `trackEvent` can receive additional properties as well:
 
 ```js
-this.get('segment').trackEvent('Creates a new post', { title: "Creating a Ember CLI application" });
+this.get('segment').trackEvent('Creates a new post', {
+  title: 'Creating a Ember CLI application'
+});
 ```
 
 All the parameters you can provide are: `event`, `properties`, `options`, `callback` in this order.
@@ -163,7 +169,6 @@ export default Route.extend({
 
 You should have in mind that you should make a conditional validation to check if the user is currently logged in. For example:
 
-
 ```js
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
@@ -173,14 +178,16 @@ export default Route.extend({
 
   identifyUser: function() {
     if (this.get('currentUser')) {
-      this.get('segment').identifyUser(this.get('currentUser.id'), this.get('currentUser'));
+      this.get('segment').identifyUser(
+        this.get('currentUser.id'),
+        this.get('currentUser')
+      );
     }
   }
 });
 ```
 
 All the parameters you can provide are: `userId`, `traits`, `options`, `callback` in this order.
-
 
 #### aliasUser
 
@@ -204,17 +211,13 @@ This addon will not break fastBoot, however, it will only execute in the browser
 
 ## Running Tests
 
-* `ember test`
-* `ember test --server`
+- `ember test`
+- `ember test --server`
 
-
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 Licensed under the [MIT license](LICENSE.md).
