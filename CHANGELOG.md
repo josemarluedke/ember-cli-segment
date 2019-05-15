@@ -1,3 +1,11 @@
+## v3.3.0 (2019-05-15)
+
+#### :zap: New Feature
+* [#59](https://github.com/josemarluedke/ember-cli-segment/pull/59) Enable use of the segment-proxy server with ember-cli-segment ([@jasonmevans](https://github.com/jasonmevans))
+
+#### Committers: 1
+- Jason Evans ([@jasonmevans](https://github.com/jasonmevans))
+
 ## v3.2.0 (2019-04-23)
 
 #### :zap: New Feature
