@@ -29,7 +29,7 @@ ENV.segment = {
 
 ```js
 ENV.segment = {
-  PROXY_URL: 'segmentproxy.mydomain.com'
+  proxyDomain: 'https://segmentproxy.mydomain.com/'
 };
 ```
 
