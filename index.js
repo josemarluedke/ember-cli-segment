@@ -16,7 +16,7 @@ module.exports = {
       }
 
       const proxyDomain = config.segment.proxyDomain;
-      const segmentDomain = proxyDomain || 'https://cdn.segment.com/';
+      let segmentDomain = proxyDomain || 'https://cdn.segment.com/';
 
       if (!/\/$/.test(segmentDomain)) {
         segmentDomain += '/';
