@@ -1,3 +1,11 @@
+## v4.0.0 (2019-06-28)
+
+#### :boom: Breaking Change
+* [#60](https://github.com/josemarluedke/ember-cli-segment/pull/60) Upgrade Ember to v3.11 & Drop node v6 ([@josemarluedke](https://github.com/josemarluedke))
+
+#### Committers: 1
+- Josemar Luedke ([@josemarluedke](https://github.com/josemarluedke))
+
 ## v3.3.0 (2019-05-15)
 
 #### :zap: New Feature
