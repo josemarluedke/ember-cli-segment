@@ -6,11 +6,12 @@ function identifyUser() {
 }
 
 function trackPageView() {
-  this.get('segment').trackPageView(this.controller.currentPath);
+  this.get('segment').trackPageView(this.router.currentRouteName);
 }
 
 export default Route.extend({
   segment: service(),
+  router: service(),
   identifyUser: null,
 
   model(params, transition) {
