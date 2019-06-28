@@ -6,7 +6,7 @@ function identifyUser() {
 }
 
 function trackPageView() {
-  this.get('segment').trackPageView(this.router.currentPath);
+  this.get('segment').trackPageView(this.router.currentRouteName);
 }
 
 export default Route.extend({
