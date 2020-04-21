@@ -13,7 +13,7 @@ Ember CLI Segment provides an easy way to integrate your Ember application with 
 
 ## Configuration
 
-Conficuration options can be placed in your `config/environment.js` under the `segment` key.
+Configuration options can be placed in your `config/environment.js` under the `segment` key.
 
 ### Segment key
 
@@ -119,7 +119,7 @@ The method `trackPageView` can receive a parameter that's the page url, if not p
 
 ### Tracking Other Events
 
-You will probabily need to track other events manually as well. We got you covered! Since we have the service, it's really straightforward to do it.
+You will probably need to track other events manually as well. We got you covered! Since we have the service, it's really straightforward to do it.
 
 Let's say that you need to track an event when the user submits an form in your router.
 
