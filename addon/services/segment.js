@@ -88,7 +88,7 @@ export default Service.extend({
 
   getTraits() {
     if (this.isEnabled() && this.hasAnalytics()) {
-      his.log('getTraits');
+      this.log('getTraits');
       return window.analytics.user().traits();
     }
   },
