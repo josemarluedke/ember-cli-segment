@@ -86,6 +86,13 @@ export default Service.extend({
     }
   },
 
+  getTraits() {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      this.log('getTraits');
+      return window.analytics.user().traits();
+    }
+  },
+
   trackPageView() {
     if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.page.apply(this, arguments);
