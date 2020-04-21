@@ -85,6 +85,14 @@ export default Service.extend({
       console.info('[Segment] ', arguments); // eslint-disable-line no-console
     }
   },
+  
+  getTraits() {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      return window.analytics.user().traits();
+
+      this.log('getTraits');
+    }
+  },
 
   trackPageView() {
     if (this.isEnabled() && this.hasAnalytics()) {
