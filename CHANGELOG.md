@@ -1,3 +1,15 @@
+## v4.1.0 (2020-04-28)
+
+#### :zap: New Feature
+* [#72](https://github.com/josemarluedke/ember-cli-segment/pull/72) Added user object from segment library ([@ChrisDryden](https://github.com/ChrisDryden))
+* [#70](https://github.com/josemarluedke/ember-cli-segment/pull/70) Added getTraits to available functions ([@ChrisDryden](https://github.com/ChrisDryden))
+
+#### :memo: Documentation
+* [#71](https://github.com/josemarluedke/ember-cli-segment/pull/71) Fixed typos in README ([@ChrisDryden](https://github.com/ChrisDryden))
+
+#### Committers: 1
+- Chris Dryden ([@ChrisDryden](https://github.com/ChrisDryden))
+
 ## v4.0.0 (2019-06-28)
 
 #### :boom: Breaking Change
