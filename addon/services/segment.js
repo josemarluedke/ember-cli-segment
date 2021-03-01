@@ -1,6 +1,7 @@
 /* globals FastBoot */
 import Service from '@ember/service';
 import { warn } from '@ember/debug';
+import { deprecatingAlias } from '@ember/object/computed';
 
 export default Service.extend({
   _disabled: false,
@@ -119,13 +120,10 @@ export default Service.extend({
     }
   },
 
-  identifyGroup(groupId, traits, options, callback) {
-    if (this.isEnabled() && this.hasAnalytics()) {
-      window.analytics.group(groupId, traits, options, callback);
-
-      this.log('identifyGroup', traits, options);
-    }
-  },
+  identifyGroup: deprecatingAlias('group', {
+    id: 'ember-cli-segment.deprecate-identifyGroup',
+    until: '5.0.0'
+  }),
 
   // reset group, user traits and id's
   reset() {
