@@ -88,6 +88,26 @@ export default Component.extend({
 });
 ```
 
+### Segment ready
+
+You can wait for segment readyness:
+
+```js
+// app/components/some-awesome-component.js
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+
+export default Component.extend({
+  segment: service(),
+
+  init() {
+    this.get('segment').ready(() => {
+      console.log('segment is ready');
+    });
+  }
+});
+```
+
 ### Tracking Page Views
 
 Your router will automatically send a page view event to Segment using the method `page` under `window.analytics` everytime the URL changes.

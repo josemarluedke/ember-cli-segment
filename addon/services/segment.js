@@ -152,6 +152,12 @@ export default Service.extend({
     }
   },
 
+  ready() {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      window.analytics.ready(...arguments);
+    }
+  },
+
   /**
    * Logs warning into console if trackPageView method wasn't called before tracking event
    *
