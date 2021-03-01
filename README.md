@@ -88,6 +88,28 @@ export default Component.extend({
 });
 ```
 
+### Segment ready
+
+You can wait for segment readyness:
+
+```js
+// app/components/some-awesome-component.js
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+
+export default class MyComponent extends Component {
+  @service segment;
+
+  constructor() {
+    super(...arguments);
+
+    this.segment.ready(() => {
+      console.log('segment is ready');
+    });
+  }
+}
+```
+
 ### Tracking Page Views
 
 Your router will automatically send a page view event to Segment using the method `page` under `window.analytics` everytime the URL changes.

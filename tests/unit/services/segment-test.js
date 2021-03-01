@@ -8,6 +8,7 @@ window.analytics = {
   identify: function() {},
   group: function() {},
   alias: function() {},
+  ready: function() {},
   reset: function() {}
 };
 
@@ -107,6 +108,15 @@ module('Unit | Service | segment', function(hooks) {
         'callback'
       )
     );
+  });
+
+  test('calls analytics.ready on ready', function(assert) {
+    let service = this.owner.lookup('service:segment');
+    let callback = () => {};
+
+    sandbox.spy(window.analytics, 'ready');
+    service.ready(callback);
+    assert.ok(window.analytics.ready.calledWith(callback));
   });
 
   test('calls analytics.reset on reset', function(assert) {
