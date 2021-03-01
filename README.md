@@ -195,6 +195,27 @@ Additionally we have an `aliasUser` method avaliable on `this.get('segment').ali
 
 All the parameters you can provide are: `userId`, `previousId`, `options`, `callback` in this order.
 
+### Group a user
+
+You can add a user to groups manually.
+
+```js
+// File: app/routes/application.js
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+
+export default Route.extend({
+  segment: service(),
+
+  identifyUser: function() {
+    this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
+    this.get('segment').group(2, {
+      name: 'Josemar Luedke Corp'
+    });
+  }
+});
+```
+
 ### Disabling and enabling at runtime
 
 You can disable/enable segment completely by calling `disable()`/`enable()`. In this case any calls to
