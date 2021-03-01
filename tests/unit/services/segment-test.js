@@ -76,6 +76,22 @@ module('Unit | Service | segment', function(hooks) {
         'callback'
       )
     );
+    assert.expectDeprecation();
+  });
+
+  test('calls analytics.group on group', function(assert) {
+    let service = this.owner.lookup('service:segment');
+
+    sandbox.spy(window.analytics, 'group');
+    service.group('groupId', 'traits', 'options', 'callback');
+    assert.ok(
+      window.analytics.group.calledWith(
+        'groupId',
+        'traits',
+        'options',
+        'callback'
+      )
+    );
   });
 
   test('calls analytics.identify on aliasUser', function(assert) {
