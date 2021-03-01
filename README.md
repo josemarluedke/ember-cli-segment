@@ -94,18 +94,20 @@ You can wait for segment readyness:
 
 ```js
 // app/components/some-awesome-component.js
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  segment: service(),
+export default class MyComponent extends Component {
+  @service segment;
 
-  init() {
-    this.get('segment').ready(() => {
+  constructor() {
+    super(...arguments);
+
+    this.segment.ready(() => {
       console.log('segment is ready');
     });
   }
-});
+}
 ```
 
 ### Tracking Page Views
