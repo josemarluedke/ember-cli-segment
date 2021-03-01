@@ -1,7 +1,7 @@
 /* globals FastBoot */
 import Service from '@ember/service';
 import { warn } from '@ember/debug';
-import { deprecatingAlias } from '@ember/object/computed';
+import { deprecate } from '@ember/application/deprecations';
 
 export default Service.extend({
   _disabled: false,
@@ -120,10 +120,17 @@ export default Service.extend({
     }
   },
 
-  identifyGroup: deprecatingAlias('group', {
-    id: 'ember-cli-segment.deprecate-identifyGroup',
-    until: '5.0.0'
-  }),
+  identifyGroup() {
+    deprecate(
+      'Usage of `identifyGroup` is deprecated, use `group` instead.',
+      false,
+      {
+        id: 'ember-cli-segment.deprecate-identifyGroup',
+        until: '5.0.0'
+      }
+    );
+    return this.group(...arguments);
+  },
 
   // reset group, user traits and id's
   reset() {
