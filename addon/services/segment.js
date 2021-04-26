@@ -132,6 +132,18 @@ export default Service.extend({
     return this.group(...arguments);
   },
 
+  addSourceMiddleware() {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      window.analytics.addSourceMiddleware(...arguments);
+    }
+  },
+
+  addDestinationMiddleware() {
+    if (this.isEnabled() && this.hasAnalytics()) {
+      window.analytics.addDestinationMiddleware(...arguments);
+    }
+  },
+
   // reset group, user traits and id's
   reset() {
     if (this.isEnabled() && this.hasAnalytics()) {
