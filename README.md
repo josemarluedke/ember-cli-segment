@@ -238,6 +238,41 @@ export default Route.extend({
 });
 ```
 
+### Middlewares
+
+Middlewares allow developers to extend Analytics.js with custom code which runs on every event. This code has full access to the DOM and Browser API, and helps customers enrich and transform event payloads.
+
+Analytics.js can be extended using two functions:
+
+```js
+addSourceMiddleware(middleware)
+addDestinationMiddleware(targetIntegration, [middleware1, middleware2, ...])
+```
+
+`Source Middleware` allows you to manipulate the payload and filter events on a per-source basis, while `Destination Middleware` allows this on a per destination basis. Middlewares run in the browser.
+
+Using source middleware
+
+```js
+var SMW1 = function({ payload, next, integrations }) {
+  payload.obj.pageTitle = document.title;
+  next(payload);
+};
+
+this.segment.addSourceMiddleware(SMW1);
+```
+
+Using destination middleware
+
+```js
+var DMW1 = function({ payload, integration, next }) {
+  delete payload.obj.pageTitle;
+  next(payload);
+};
+
+analytics.addDestinationMiddleware('integrationA', [DMW1]);
+```
+
 ### Disabling and enabling at runtime
 
 You can disable/enable segment completely by calling `disable()`/`enable()`. In this case any calls to
