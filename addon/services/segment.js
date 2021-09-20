@@ -2,6 +2,7 @@
 import Service from '@ember/service';
 import { warn } from '@ember/debug';
 import { deprecate } from '@ember/application/deprecations';
+import { getOwner } from '@ember/application';
 
 export default class SegmentService extends Service {
   _disabled = false;
@@ -33,6 +34,10 @@ export default class SegmentService extends Service {
       this._defaultIdentifyUserDisabled = defaultIdentifyUser === false;
       this._disabled = enabled === false;
     }
+  }
+
+  get config() {
+    return getOwner(this).resolveRegistration('config:environment');
   }
 
   hasAnalytics() {
