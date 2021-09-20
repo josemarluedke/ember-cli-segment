@@ -40,5 +40,5 @@ export default Route.extend({
     } else {
       this.set('trackPageView', null);
     }
-  }
+  },
 });

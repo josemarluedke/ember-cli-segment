@@ -3,30 +3,30 @@ import { setupTest } from 'ember-qunit';
 import sinon from 'sinon';
 
 window.analytics = {
-  page: function() {},
-  track: function() {},
-  identify: function() {},
-  group: function() {},
-  alias: function() {},
-  ready: function() {},
-  reset: function() {}
+  page: function () {},
+  track: function () {},
+  identify: function () {},
+  group: function () {},
+  alias: function () {},
+  ready: function () {},
+  reset: function () {},
 };
 
 let sandbox = sinon.createSandbox();
 
-module('Unit | Service | segment', function(hooks) {
+module('Unit | Service | segment', function (hooks) {
   setupTest(hooks);
 
-  hooks.afterEach(function() {
+  hooks.afterEach(function () {
     sandbox.restore();
   });
 
-  test('it exists', function(assert) {
+  test('it exists', function (assert) {
     let service = this.owner.lookup('service:segment');
     assert.ok(service);
   });
 
-  test('calls analytics.page on trackPageView', function(assert) {
+  test('calls analytics.page on trackPageView', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'page');
@@ -34,7 +34,7 @@ module('Unit | Service | segment', function(hooks) {
     assert.ok(window.analytics.page.calledWith('/neighborly'));
   });
 
-  test('calls analytics.track on trackEvent', function(assert) {
+  test('calls analytics.track on trackEvent', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'track');
@@ -49,7 +49,7 @@ module('Unit | Service | segment', function(hooks) {
     );
   });
 
-  test('calls analytics.identify on identifyUser', function(assert) {
+  test('calls analytics.identify on identifyUser', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'identify');
@@ -64,7 +64,7 @@ module('Unit | Service | segment', function(hooks) {
     );
   });
 
-  test('calls analytics.group on identifyGroup', function(assert) {
+  test('calls analytics.group on identifyGroup', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'group');
@@ -80,7 +80,7 @@ module('Unit | Service | segment', function(hooks) {
     assert.expectDeprecation();
   });
 
-  test('calls analytics.group on group', function(assert) {
+  test('calls analytics.group on group', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'group');
@@ -95,7 +95,7 @@ module('Unit | Service | segment', function(hooks) {
     );
   });
 
-  test('calls analytics.identify on aliasUser', function(assert) {
+  test('calls analytics.identify on aliasUser', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'alias');
@@ -110,7 +110,7 @@ module('Unit | Service | segment', function(hooks) {
     );
   });
 
-  test('calls analytics.ready on ready', function(assert) {
+  test('calls analytics.ready on ready', function (assert) {
     let service = this.owner.lookup('service:segment');
     let callback = () => {};
 
@@ -119,7 +119,7 @@ module('Unit | Service | segment', function(hooks) {
     assert.ok(window.analytics.ready.calledWith(callback));
   });
 
-  test('calls analytics.reset on reset', function(assert) {
+  test('calls analytics.reset on reset', function (assert) {
     let service = this.owner.lookup('service:segment');
 
     sandbox.spy(window.analytics, 'reset');

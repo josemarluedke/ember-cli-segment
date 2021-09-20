@@ -7,6 +7,6 @@ export default Route.extend({
   actions: {
     didTransition() {
       this.get('segment').trackEvent('test event');
-    }
-  }
+    },
+  },
 });

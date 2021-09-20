@@ -17,20 +17,18 @@ export default Service.extend({
 
     if (
       !this.hasAnalytics() &&
-      (this.config && this.config.environment !== 'test') &&
+      this.config &&
+      this.config.environment !== 'test' &&
       !isFastBoot
     ) {
       warn('Segment is not loaded yet (window.analytics)', false, {
-        id: 'ember-cli-segment.analytics-not-loaded'
+        id: 'ember-cli-segment.analytics-not-loaded',
       });
     }
 
     if (this.config && this.config.segment) {
-      const {
-        defaultPageTrack,
-        defaultIdentifyUser,
-        enabled
-      } = this.config.segment;
+      const { defaultPageTrack, defaultIdentifyUser, enabled } =
+        this.config.segment;
       this.set('_defaultPageTrackDisabled', defaultPageTrack === false);
       this.set('_defaultIdentifyUserDisabled', defaultIdentifyUser === false);
       this.set('_disabled', enabled === false);
@@ -126,7 +124,7 @@ export default Service.extend({
       false,
       {
         id: 'ember-cli-segment.deprecate-identifyGroup',
-        until: '5.0.0'
+        until: '5.0.0',
       }
     );
     return this.group(...arguments);
@@ -187,8 +185,8 @@ export default Service.extend({
         'https://segment.com/docs/sources/website/analytics.js/#page',
       this.get('_calledPageTrack'),
       {
-        id: 'ember-cli-segment.must-call-page'
+        id: 'ember-cli-segment.must-call-page',
       }
     );
-  }
+  },
 });

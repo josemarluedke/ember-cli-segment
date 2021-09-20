@@ -22,7 +22,7 @@ export function initialize(appInstance) {
   // Since Ember v3.6 didTransition is deprecated in favour of routeDidChange
   const eventName = routerServicePresent ? 'routeDidChange' : 'didTransition';
 
-  router.on(eventName, function() {
+  router.on(eventName, function () {
     const applicationRoute = owner.lookup('route:application');
 
     if (segment && segment.isPageTrackEnabled()) {
@@ -46,5 +46,5 @@ export function initialize(appInstance) {
 
 export default {
   name: 'segment',
-  initialize
+  initialize,
 };

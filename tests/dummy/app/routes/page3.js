@@ -7,5 +7,5 @@ export default Route.extend({
   model() {
     this.get('segment').enableDefaultPageTrack();
     this.get('segment').enableDefaultIdentifyUser();
-  }
+  },
 });
