@@ -9,10 +9,10 @@ function trackPageView() {
   this.segment.trackPageView(this.router.currentRouteName);
 }
 
-export default Route.extend({
-  segment: service(),
-  router: service(),
-  identifyUser: null,
+export default class ApplicationRoute extends Route {
+  @service segment;
+  @service router;
+  identifyUser = null;
 
   model(params, transition) {
     // Ember v3.6+ has public "to" and "from" route info properties
@@ -21,9 +21,9 @@ export default Route.extend({
       : transition.queryParams;
 
     if (queryParams.TEST_NO_IDENTIFY) {
-      this.set('identifyUser', null);
+      this.identifyUser = null;
     } else {
-      this.set('identifyUser', identifyUser);
+      this.identifyUser = identifyUser;
     }
 
     if (queryParams.TEST_DISABLE) {
@@ -36,9 +36,9 @@ export default Route.extend({
     }
 
     if (queryParams.TEST_CUSTOM_TRACK_PAGE) {
-      this.set('trackPageView', trackPageView);
+      this.trackPageView = trackPageView;
     } else {
-      this.set('trackPageView', null);
+      this.trackPageView = null;
     }
-  },
-});
+  }
+}

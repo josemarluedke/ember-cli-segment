@@ -3,15 +3,15 @@ import Service from '@ember/service';
 import { warn } from '@ember/debug';
 import { deprecate } from '@ember/application/deprecations';
 
-export default Service.extend({
-  _disabled: false,
-  _defaultPageTrackDisabled: false,
-  _defaultIdentifyUserDisabled: false,
+export default class SegmentService extends Service {
+  _disabled = false;
+  _defaultPageTrackDisabled = false;
+  _defaultIdentifyUserDisabled = false;
 
-  _calledPageTrack: false,
+  _calledPageTrack = false;
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
 
     const isFastBoot = typeof FastBoot !== 'undefined';
 
@@ -29,51 +29,51 @@ export default Service.extend({
     if (this.config && this.config.segment) {
       const { defaultPageTrack, defaultIdentifyUser, enabled } =
         this.config.segment;
-      this.set('_defaultPageTrackDisabled', defaultPageTrack === false);
-      this.set('_defaultIdentifyUserDisabled', defaultIdentifyUser === false);
-      this.set('_disabled', enabled === false);
+      this._defaultPageTrackDisabled = defaultPageTrack === false;
+      this._defaultIdentifyUserDisabled = defaultIdentifyUser === false;
+      this._disabled = enabled === false;
     }
-  },
+  }
 
   hasAnalytics() {
     return !!(window.analytics && typeof window.analytics === 'object');
-  },
+  }
 
   isEnabled() {
     return !this._disabled;
-  },
+  }
 
   enable() {
-    this.set('_disabled', false);
-  },
+    this._disabled = false;
+  }
 
   disable() {
-    this.set('_disabled', true);
-  },
+    this._disabled = true;
+  }
 
   isPageTrackEnabled() {
     return !this._defaultPageTrackDisabled;
-  },
+  }
 
   enableDefaultPageTrack() {
-    this.set('_defaultPageTrackDisabled', false);
-  },
+    this._defaultPageTrackDisabled = false;
+  }
 
   disableDefaultPageTrack() {
-    this.set('_defaultPageTrackDisabled', true);
-  },
+    this._defaultPageTrackDisabled = true;
+  }
 
   isIdentifyUserEnabled() {
     return !this._defaultIdentifyUserDisabled;
-  },
+  }
 
   enableDefaultIdentifyUser() {
-    this.set('_defaultIdentifyUserDisabled', false);
-  },
+    this._defaultIdentifyUserDisabled = false;
+  }
 
   disableDefaultIdentifyUser() {
-    this.set('_defaultIdentifyUserDisabled', true);
-  },
+    this._defaultIdentifyUserDisabled = true;
+  }
 
   log() {
     if (
@@ -83,23 +83,23 @@ export default Service.extend({
     ) {
       console.info('[Segment] ', arguments); // eslint-disable-line no-console
     }
-  },
+  }
 
   getTraits() {
     if (this.isEnabled() && this.hasAnalytics()) {
       this.log('getTraits');
       return window.analytics.user().traits();
     }
-  },
+  }
 
   trackPageView() {
     if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.page.apply(this, arguments);
-      this.set('_calledPageTrack', true);
+      this._calledPageTrack = true;
 
       this.log('trackPageView', arguments);
     }
-  },
+  }
 
   trackEvent(event, properties, options, callback) {
     if (this.isEnabled() && this.hasAnalytics()) {
@@ -108,7 +108,7 @@ export default Service.extend({
 
       this.log(event, properties, options);
     }
-  },
+  }
 
   identifyUser(userId, traits, options, callback) {
     if (this.isEnabled() && this.hasAnalytics()) {
@@ -116,7 +116,7 @@ export default Service.extend({
 
       this.log('identifyUser', traits, options);
     }
-  },
+  }
 
   identifyGroup() {
     deprecate(
@@ -128,19 +128,19 @@ export default Service.extend({
       }
     );
     return this.group(...arguments);
-  },
+  }
 
   addSourceMiddleware() {
     if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.addSourceMiddleware(...arguments);
     }
-  },
+  }
 
   addDestinationMiddleware() {
     if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.addDestinationMiddleware(...arguments);
     }
-  },
+  }
 
   // reset group, user traits and id's
   reset() {
@@ -149,7 +149,7 @@ export default Service.extend({
 
       this.log('reset');
     }
-  },
+  }
 
   group(groupId, traits, options, callback) {
     if (this.isEnabled() && this.hasAnalytics()) {
@@ -157,7 +157,7 @@ export default Service.extend({
 
       this.log('group', traits, options);
     }
-  },
+  }
 
   aliasUser(userId, previousId, options, callback) {
     if (this.isEnabled() && this.hasAnalytics()) {
@@ -165,13 +165,13 @@ export default Service.extend({
 
       this.log('aliasUser', userId, previousId, options);
     }
-  },
+  }
 
   ready() {
     if (this.isEnabled() && this.hasAnalytics()) {
       window.analytics.ready(...arguments);
     }
-  },
+  }
 
   /**
    * Logs warning into console if trackPageView method wasn't called before tracking event
@@ -188,5 +188,5 @@ export default Service.extend({
         id: 'ember-cli-segment.must-call-page',
       }
     );
-  },
-});
+  }
+}

@@ -1,12 +1,12 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  segment: service(),
+export default class Page2Route extends Route {
+  @service segment;
 
-  actions: {
-    didTransition() {
-      this.segment.trackEvent('test event');
-    },
-  },
-});
+  @action
+  didTransition() {
+    this.segment.trackEvent('test event');
+  }
+}
