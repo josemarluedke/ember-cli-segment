@@ -2,11 +2,11 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 function identifyUser() {
-  this.get('segment').identifyUser(1, { name: 'Josemar Luedke' });
+  this.segment.identifyUser(1, { name: 'Josemar Luedke' });
 }
 
 function trackPageView() {
-  this.get('segment').trackPageView(this.router.currentRouteName);
+  this.segment.trackPageView(this.router.currentRouteName);
 }
 
 export default Route.extend({
@@ -27,12 +27,12 @@ export default Route.extend({
     }
 
     if (queryParams.TEST_DISABLE) {
-      this.get('segment').disable();
+      this.segment.disable();
     }
 
     if (queryParams.TEST_DISABLE_DEFAULT_TRACKING) {
-      this.get('segment').disableDefaultPageTrack();
-      this.get('segment').disableDefaultIdentifyUser();
+      this.segment.disableDefaultPageTrack();
+      this.segment.disableDefaultIdentifyUser();
     }
 
     if (queryParams.TEST_CUSTOM_TRACK_PAGE) {

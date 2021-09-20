@@ -40,7 +40,7 @@ export default Service.extend({
   },
 
   isEnabled() {
-    return !this.get('_disabled');
+    return !this._disabled;
   },
 
   enable() {
@@ -52,7 +52,7 @@ export default Service.extend({
   },
 
   isPageTrackEnabled() {
-    return !this.get('_defaultPageTrackDisabled');
+    return !this._defaultPageTrackDisabled;
   },
 
   enableDefaultPageTrack() {
@@ -64,7 +64,7 @@ export default Service.extend({
   },
 
   isIdentifyUserEnabled() {
-    return !this.get('_defaultIdentifyUserDisabled');
+    return !this._defaultIdentifyUserDisabled;
   },
 
   enableDefaultIdentifyUser() {
@@ -183,7 +183,7 @@ export default Service.extend({
       '[ember-cli-segment] You should call trackPageView at least once ' +
         'before tracking events: ' +
         'https://segment.com/docs/sources/website/analytics.js/#page',
-      this.get('_calledPageTrack'),
+      this._calledPageTrack,
       {
         id: 'ember-cli-segment.must-call-page',
       }
