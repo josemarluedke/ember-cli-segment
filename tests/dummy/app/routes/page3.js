@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  segment: service(),
+export default class Page3Route extends Route {
+  @service segment;
 
   model() {
-    this.get('segment').enableDefaultPageTrack();
-    this.get('segment').enableDefaultIdentifyUser();
+    this.segment.enableDefaultPageTrack();
+    this.segment.enableDefaultIdentifyUser();
   }
-});
+}

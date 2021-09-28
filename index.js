@@ -3,7 +3,7 @@
 module.exports = {
   name: require('./package').name,
 
-  contentFor: function(type, config) {
+  contentFor: function (type, config) {
     if (type === 'body-footer') {
       if (!config.segment || !config.segment.WRITE_KEY) {
         return '';
@@ -28,5 +28,5 @@ module.exports = {
           }}();
         </script>`;
     }
-  }
+  },
 };

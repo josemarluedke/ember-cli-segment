@@ -1,8 +1,10 @@
+{{page-title "Dummy"}}
+
 <h2 id="title">Welcome to Ember</h2>
 
-{{link-to "index" "index" class="index"}}
-{{link-to "page-1" "page1" class="page-1"}}
-{{link-to "page-2" "page2" class="page-2"}}
-{{link-to "page-3" "page3" class="page-3"}}
+<LinkTo @route="index" class="index">index</LinkTo>
+<LinkTo @route="page1" class="page-1">page-1</LinkTo>
+<LinkTo @route="page2" class="page-2">page-2</LinkTo>
+<LinkTo @route="page3" class="page-3">page-3</LinkTo>
 
 {{outlet}}
