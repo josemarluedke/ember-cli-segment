@@ -1,7 +1,6 @@
 /* globals FastBoot */
 import Service from '@ember/service';
 import { warn } from '@ember/debug';
-import { deprecate } from '@ember/application/deprecations';
 import { getOwner } from '@ember/application';
 
 export default class SegmentService extends Service {
@@ -121,18 +120,6 @@ export default class SegmentService extends Service {
 
       this.log('identifyUser', traits, options);
     }
-  }
-
-  identifyGroup() {
-    deprecate(
-      'Usage of `identifyGroup` is deprecated, use `group` instead.',
-      false,
-      {
-        id: 'ember-cli-segment.deprecate-identifyGroup',
-        until: '5.0.0',
-      }
-    );
-    return this.group(...arguments);
   }
 
   addSourceMiddleware() {

@@ -64,22 +64,6 @@ module('Unit | Service | segment', function (hooks) {
     );
   });
 
-  test('calls analytics.group on identifyGroup', function (assert) {
-    let service = this.owner.lookup('service:segment');
-
-    sandbox.spy(window.analytics, 'group');
-    service.identifyGroup('groupId', 'traits', 'options', 'callback');
-    assert.ok(
-      window.analytics.group.calledWith(
-        'groupId',
-        'traits',
-        'options',
-        'callback'
-      )
-    );
-    assert.expectDeprecation();
-  });
-
   test('calls analytics.group on group', function (assert) {
     let service = this.owner.lookup('service:segment');
 
