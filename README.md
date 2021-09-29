@@ -1,6 +1,6 @@
 # Ember CLI Segment
 
-[![Build Status](https://travis-ci.org/josemarluedke/ember-cli-segment.svg?branch=master)](https://travis-ci.org/josemarluedke/ember-cli-segment)
+[![Build Status](https://github.com/josemarluedke/ember-cli-segment/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/josemarluedke/ember-cli-segment/actions/workflows/ci.yml)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-segment.svg)](https://emberobserver.com/addons/ember-cli-segment)
 
 Ember CLI Segment provides an easy way to integrate your Ember application with [Segment.com](https://segment.com/).
